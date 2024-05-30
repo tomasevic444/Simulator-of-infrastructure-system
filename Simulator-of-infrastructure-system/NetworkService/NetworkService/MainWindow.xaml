@@ -10,7 +10,8 @@
         ResizeMode="NoResize"
         AllowsTransparency="True"
     Background="Transparent"
-    WindowStyle="None">
+    WindowStyle="None"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown">
     <Grid>
         <Border CornerRadius="30"  BorderThickness="2">
             <Border.Background>
@@ -18,7 +19,7 @@
             </Border.Background>
         </Border>
         <Border CornerRadius="30"                    
-            BorderThickness="2"
+            BorderThickness="4"
             Opacity="0.95"
                 Padding="10 5">
             <Border.BorderBrush>
@@ -34,9 +35,7 @@
                     <GradientStop Color="#1B1448" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
-            <!--<Border.Background>
-            <ImageBrush ImageSource="Images/background.jpg"/>
-        </Border.Background>-->
+
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="13*"/>
@@ -65,7 +64,7 @@
                         </Grid.ColumnDefinitions>
 
                         <!-- TODO undo-->
-                        <Button Grid.Column="4" Background="Transparent" BorderBrush="Transparent" Command="{Binding UndoCommand}" HorizontalAlignment="Right" >
+                        <Button Grid.Column="4" Background="Transparent" BorderBrush="Transparent" Command="{Binding UndoCommand}" HorizontalAlignment="Right" x:Name="btnExit" Click="btnExit_Click">
                             <StackPanel>
                                 <Image Source="Images/exit.png" Stretch="Uniform" Width="36" Margin="5"/>
                                 <TextBlock Text="EXIT" Foreground="White" FontFamily="Montserrat" Margin="-8 -7 0 0
@@ -74,7 +73,7 @@
                         </Button>
 
                         <!-- Tabelarni prikaz -->
-                        <Button  Grid.Column="1" Background="Transparent" BorderBrush="Transparent" Command="{Binding NavCommand}" CommandParameter="entities" >
+                        <Button  Grid.Column="1" Background="Transparent" BorderBrush="Transparent" Command="{Binding NavCommand}" CommandParameter="entities" x:Name="tableBtn" Click="tableBtn_Click" >
                             <StackPanel>
                                 <Image Source="Images/table.png" Stretch="Uniform" Width="26" Margin="7"/>
                                 <TextBlock Text="TABLE" Foreground="White" FontFamily="Montserrat"/>
@@ -98,8 +97,17 @@
                         </Button>
                     </Grid>
                 </Border>
-
-                <!-- Izbor stranice koja se prikazuje, inicijalno je to Login.xaml -->
+                <!-- Centralni frejm -->
+                <Frame x:FieldModifier="public" 
+               Name="FrameHolder" 
+               NavigationUIVisibility="Hidden" 
+               Grid.Row="1" 
+               HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+               Margin="0 0 0 0" 
+               Source="Frames/HomePage.xaml">
+                </Frame>
+                <!-- Donji nav menu -->
                 <Border CornerRadius="20"                    
             BorderThickness="2"
             Opacity="0.95"
@@ -122,14 +130,14 @@
 
                         <!-- TODO undo-->
 
-                        <Button Grid.Column="0" Background="Transparent" BorderBrush="Transparent" Command="{Binding NavCommand}" CommandParameter="home">
+                        <Button Grid.Column="0" Background="Transparent" BorderBrush="Transparent" Command="{Binding NavCommand}" CommandParameter="home" >
                             <StackPanel>
                                 <Image Source="Images/back.png" Stretch="Uniform" Width="26" Margin="5"/>
                                 <TextBlock Text="BACK" Foreground="White" FontFamily="Montserrat"/>
                             </StackPanel>
                         </Button>
                         <!-- Početna stranica -->
-                        <Button Grid.Column="1" Background="Transparent" BorderBrush="Transparent" Command="{Binding NavCommand}" CommandParameter="home">
+                        <Button Grid.Column="1" Background="Transparent" BorderBrush="Transparent" Command="{Binding NavCommand}" CommandParameter="home" x:Name="homeBtn" Click="homeBtn_Click">
                             <StackPanel>
                                 <Image Source="Images/home.png" Stretch="Uniform" Width="26" Margin="5"/>
                                 <TextBlock Text="HOME" Foreground="White" FontFamily="Montserrat"/>
