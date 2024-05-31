@@ -78,8 +78,20 @@
                     </DataGrid>
                 </Border>
                 <!-- Filter-->
-                <Border Grid.Row="1" Grid.Column="0"   CornerRadius="10">
-                    <Grid Margin="10">
+                <Border CornerRadius="20"                    
+            BorderThickness="1"
+            Opacity="0.95"
+                        Grid.Row="1"
+                        Grid.Column="0">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#462AD8" Offset="0"/>
+                            <GradientStop Color="#DA34AE" Offset="0.75"/>
+                            <GradientStop Color="#8A16C1" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+
+                    <Grid Margin="5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
@@ -142,7 +154,7 @@
                                 <RadioButton Content="=" Foreground="White" IsChecked="{Binding JednakoCekirano}" />
                             </Viewbox>
 
-                            <TextBox Height="20" Width="90" FontSize="20" FontWeight="Bold" 
+                            <TextBox Height="20" Width="90" FontSize="10" FontWeight="Bold" 
                              MaxLength="5" Text="{Binding TrenutniId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
                                 <Validation.ErrorTemplate>
                                     <ControlTemplate>
@@ -191,129 +203,122 @@
 
                     </Grid>
                 </Border>
-                <!-- Entity-->
-                <Border Grid.Row="2" Grid.Column="0"   CornerRadius="10">
-                    <Grid Margin="10">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="0.5*" />
-                            <RowDefinition Height="0.5*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Content="ENTITY" FontSize="12" FontWeight="Bold" Foreground="White" />
-                        <!-- Id-->
-                        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" >
-                            <Label Grid.ColumnSpan="3" Content="Id:" VerticalAlignment="Center" FontSize="10" FontWeight="Bold" Foreground="White"  />
-                            <TextBox   Width="80"  Height="20" FontSize="18" FontWeight="Bold" Margin="0 0 0 0" />
-                            <Button                           
+                <StackPanel Orientation="Horizontal"  Grid.Row="2"
+                        Grid.Column="0" >
+                    <!-- Entity-->
+                    <Border CornerRadius="20"                    
+            BorderThickness="1"
+            Opacity="0.95"
+                        Width="230"
+                        HorizontalAlignment="Left"
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Margin="0 5 0 5"
+                        >
+                        <Border.BorderBrush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#462AD8" Offset="0"/>
+                                <GradientStop Color="#DA34AE" Offset="0.75"/>
+                                <GradientStop Color="#8A16C1" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                        <Grid Margin="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="0.1*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 -3 0 0" Content="ENTITY" FontSize="12" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                            <!-- Id-->
+                            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" >
+                                <Label  Margin="19 0 0 0" Grid.ColumnSpan="3" Content="Id:" VerticalAlignment="Center" FontSize="10" FontWeight="Bold" Foreground="White"  />
+                                <TextBox   Width="80"  Height="17" FontSize="10" FontWeight="Bold" Margin="0 0 0 0" />
+                            </StackPanel>
+                            <!-- Name-->
+                            <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6" >
+                                <Label Grid.ColumnSpan="3" Content="Name:" VerticalAlignment="Center" FontSize="10" FontWeight="Bold" Foreground="White"  />
+                                <TextBox   Width="80"  Height="17" FontSize="10" FontWeight="Bold"  Margin="1 0 0 0" />
+                            </StackPanel>
+                            <!-- Type-->
+                            <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="6"  >
+                                <Label Margin ="7 0 0 0" Grid.ColumnSpan="3" Content="Type:" VerticalAlignment="Center" FontSize="10" FontWeight="Bold" Foreground="White"  />
+                                <ComboBox   Width="80"  Height="17" FontSize="10" FontWeight="Bold" ItemsSource="{Binding AdresneKlase}" SelectedIndex="{Binding OdabranaKlasaIndeks}" Margin="0 0 0 0" />
+                                <Button                         
                             BorderThickness="0"
-                            Content="Clear"
+                            Content="Add"
                             Foreground="White"
                             FontSize="12"
                             FontFamily="Montserrat"
                             Cursor="Hand"     
-                                    Margin="105 0 0 0">
-                                <Button.Style>
-                                    <Style TargetType="Button">
-                                        <Setter Property="Background" Value="#462AD8"/>
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="#28AEED"/>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Button.Style>
-                                <Button.Template>
-                                    <ControlTemplate TargetType="Button">
-                                        <Border Width="70" Height="20"
+                                    Margin="10 0 0 0">
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Background" Value="#462AD8"/>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="#28AEED"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Width="70" Height="20"
                                         CornerRadius="5"
                                         Background="{TemplateBinding Background}">
-                                            <ContentPresenter VerticalAlignment="Center"
+                                                <ContentPresenter VerticalAlignment="Center"
                                                       HorizontalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Button.Template>
-                            </Button>
-                        </StackPanel>
-                        <!-- Name-->
-                        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6" >
-                            <Label Grid.ColumnSpan="3" Content="Name:" VerticalAlignment="Center" FontSize="10" FontWeight="Bold" Foreground="White"  />
-                            <TextBox   Width="80"  Height="20" FontSize="18" FontWeight="Bold"  Margin="0 0 0 0" />
-                            <Button                         
-                            BorderThickness="0"
-                            Content="Clear"
-                            Foreground="White"
-                            FontSize="12"
-                            FontFamily="Montserrat"
-                            Cursor="Hand"     
-                                    Margin="105 0 0 0">
-                                <Button.Style>
-                                    <Style TargetType="Button">
-                                        <Setter Property="Background" Value="#462AD8"/>
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="#28AEED"/>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Button.Style>
-                                <Button.Template>
-                                    <ControlTemplate TargetType="Button">
-                                        <Border Width="70" Height="20"
-                                        CornerRadius="5"
-                                        Background="{TemplateBinding Background}">
-                                            <ContentPresenter VerticalAlignment="Center"
-                                                      HorizontalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Button.Template>
-                            </Button>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="6" >
-                            <Label Grid.ColumnSpan="3" Content="Type:" VerticalAlignment="Center" FontSize="10" FontWeight="Bold" Foreground="White"  />
-                            <ComboBox   Width="80"  Height="20" FontSize="18" FontWeight="Bold" ItemsSource="{Binding AdresneKlase}" SelectedIndex="{Binding OdabranaKlasaIndeks}" Margin="0 0 0 0" />
-                            <Button                         
-                            BorderThickness="0"
-                            Content="Clear"
-                            Foreground="White"
-                            FontSize="12"
-                            FontFamily="Montserrat"
-                            Cursor="Hand"     
-                                    Margin="105 0 0 0">
-                                <Button.Style>
-                                    <Style TargetType="Button">
-                                        <Setter Property="Background" Value="#462AD8"/>
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="#28AEED"/>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Button.Style>
-                                <Button.Template>
-                                    <ControlTemplate TargetType="Button">
-                                        <Border Width="70" Height="20"
-                                        CornerRadius="5"
-                                        Background="{TemplateBinding Background}">
-                                            <ContentPresenter VerticalAlignment="Center"
-                                                      HorizontalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Button.Template>
-                            </Button>
-                        </StackPanel>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
 
-                    </Grid>
-                </Border>
+
+                            </StackPanel>
+
+                        </Grid>
+                    </Border>
+                    <Button                         
+                            BorderThickness="0"
+                            Content="Delete"
+                            Foreground="White"
+                            FontSize="12"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"     
+                        VerticalAlignment="Bottom"
+                                    Margin="10 0 0 12">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#462AD8"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#28AEED"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="70" Height="20"
+                                        CornerRadius="5"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
 
 
             </Grid>
