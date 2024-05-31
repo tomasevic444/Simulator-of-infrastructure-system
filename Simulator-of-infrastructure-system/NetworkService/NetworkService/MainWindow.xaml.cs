@@ -53,5 +53,12 @@ namespace NetworkService
             MainWindow main = (MainWindow)Application.Current.MainWindow;
             main.FrameHolder.Content = tablePage;
         }
+
+        private void displayBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DisplayPage displayPage = new DisplayPage();
+            MainWindow main = (MainWindow)Application.Current.MainWindow;
+            main.FrameHolder.Content = displayPage;
+        }
     }
 }
