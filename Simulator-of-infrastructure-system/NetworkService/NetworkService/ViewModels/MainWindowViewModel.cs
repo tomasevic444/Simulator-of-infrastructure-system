@@ -27,6 +27,8 @@ namespace NetworkService.ViewModels
         }
         public MainWindowViewModel()
         {
+
+            Entities = XmlHelper.LoadData("entityData.xml");
             ChangeViewCommand = new Commands<string>(ChangeView);
             SelectedContent = new HomeView();
         }

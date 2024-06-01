@@ -3,7 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:NetworkService.Views"
+             xmlns:fa5="http://schemas.fontawesome.com/icons/"
+             xmlns:local="clr-namespace:NetworkService.Views" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:EntitiesViewModel}"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:model="clr-namespace:NetworkService.Models" xmlns:viewmodels="clr-namespace:NetworkService.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="350">
     <Border CornerRadius="30" Height="500" Width="320">
@@ -33,7 +37,8 @@
                 
                 CornerRadius="10" 
                 Padding="10">
-                    <DataGrid ColumnWidth="*" ItemsSource="{Binding softwareList}" Background="#200F53"
+                    <DataGrid ColumnWidth="*" ItemsSource="{Binding FilteredEntities}"  
+        SelectedItem="{Binding SelectedEntity}" Background="#200F53"
           BorderThickness="0" x:Name="dataTable" 
                           SelectionMode="Single" CanUserResizeColumns="False" CanUserResizeRows="False"
                       AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" 
@@ -68,10 +73,10 @@
                         </DataGrid.CellStyle>
                         <DataGrid.Columns>
                             <DataGridCheckBoxColumn Header="Delete"  Binding="{Binding Delete, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Width="20*" IsThreeState="False" x:Name="CBDelete"/>
-                            <DataGridTextColumn Header="ID" Width="10*" Binding="{Binding Name}" IsReadOnly="True"  />
-                            <DataGridTextColumn Header="Name" Width="30*" IsReadOnly="True" />
-                            <DataGridTextColumn Header="Type" Width="30*" IsReadOnly="True" Binding="{Binding DateAdded}" />
-                            <DataGridTextColumn Header="Value" Width="30*" IsReadOnly="True" Binding="{Binding DateAdded}" />
+                            <DataGridTextColumn Header="ID" Width="10*" IsReadOnly="True"  Binding= "{Binding ID}"/>
+                            <DataGridTextColumn Header="Name" Width="30*" IsReadOnly="True" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="Type" Width="30*" IsReadOnly="True" Binding="{Binding EntityType.Type}" />
+                            <DataGridTextColumn Header="Value" Width="30*" IsReadOnly="True" Binding="{Binding Value}" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>
@@ -240,22 +245,24 @@
                             <!-- Id-->
                             <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" >
                                 <Label  Margin="19 0 0 0" Grid.ColumnSpan="3" Content="Id:" VerticalAlignment="Center" FontSize="10" FontWeight="Bold" Foreground="White"  />
-                                <TextBox   Width="80"  Height="17" FontSize="10" FontWeight="Bold" Margin="0 0 0 0" />
+                                <TextBox   Width="80"  Height="17" FontSize="10" FontWeight="Bold" Margin="0 0 0 0" Text="{Binding IDText,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                             </StackPanel>
                             <!-- Name-->
                             <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6" >
                                 <Label Grid.ColumnSpan="3" Content="Name:" VerticalAlignment="Center" FontSize="10" FontWeight="Bold" Foreground="White"  />
-                                <TextBox   Width="80"  Height="17" FontSize="10" FontWeight="Bold"  Margin="1 0 0 0" />
+                                <TextBox   Width="80"  Height="17" FontSize="10" FontWeight="Bold"  Margin="1 0 0 0" Text="{Binding NameText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                             </StackPanel>
                             <!-- Type-->
                             <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="6"  >
                                 <Label Margin ="7 0 0 0" Grid.ColumnSpan="3" Content="Type:" VerticalAlignment="Center" FontSize="10" FontWeight="Bold" Foreground="White"  />
-                                <ComboBox   Width="80"  Height="17" FontSize="10" FontWeight="Bold" ItemsSource="{Binding AdresneKlase}" SelectedIndex="{Binding OdabranaKlasaIndeks}" Margin="0 0 0 0" />
+                                <ComboBox   Width="80"  Height="17" FontSize="10" FontWeight="Bold"  ItemsSource="{Binding Types}" 
+                                  SelectedItem="{Binding SelectedType}" Margin="0 0 0 0" />
                                 <Button                         
                             BorderThickness="0"
                             Content="Add"
                             Foreground="White"
                             FontSize="12"
+                            Command="{Binding AddEntityCommand}"
                             FontFamily="Montserrat"
                             Cursor="Hand"     
                                     Margin="10 0 0 0">

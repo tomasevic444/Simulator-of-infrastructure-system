@@ -57,6 +57,8 @@
     </ApplicationDefinition>
     <Compile Include="Helpers\BindableBase.cs" />
     <Compile Include="Helpers\Commands.cs" />
+    <Compile Include="Helpers\XmlHelper.cs" />
+    <Compile Include="ViewModels\EntitiesViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\DisplayView.xaml.cs">
       <DependentUpon>DisplayView.xaml</DependentUpon>
