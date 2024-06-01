@@ -68,3 +68,5 @@ C:\Users\hp\Desktop\safsav\Simulator-of-infrastructure-system\NetworkService\Net
 C:\Users\hp\Desktop\safsav\Simulator-of-infrastructure-system\NetworkService\NetworkService\obj\Debug\NetworkService.pdb
 C:\Users\hp\Desktop\safsav\Simulator-of-infrastructure-system\NetworkService\NetworkService\obj\Debug\Frames\DisplayPage.g.cs
 C:\Users\hp\Desktop\safsav\Simulator-of-infrastructure-system\NetworkService\NetworkService\obj\Debug\Frames\DisplayPage.baml
+C:\Users\Tomas\Desktop\HCI2\Simulator-of-infrastructure-system\NetworkService\NetworkService\obj\Debug\Frames\DisplayPage.g.cs
+C:\Users\Tomas\Desktop\HCI2\Simulator-of-infrastructure-system\NetworkService\NetworkService\obj\Debug\Frames\DisplayPage.baml

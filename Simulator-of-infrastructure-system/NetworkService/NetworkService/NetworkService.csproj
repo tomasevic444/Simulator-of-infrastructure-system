@@ -90,6 +90,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Entity.cs" />
+    <Compile Include="Models\EntityType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -129,6 +131,9 @@
   <ItemGroup>
     <Resource Include="Images\display.png" />
     <Resource Include="Images\exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
