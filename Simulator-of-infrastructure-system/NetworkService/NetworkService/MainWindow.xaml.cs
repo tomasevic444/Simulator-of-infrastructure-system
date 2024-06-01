@@ -1,5 +1,4 @@
-﻿using NetworkService.Frames;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,35 +29,13 @@ namespace NetworkService
             this.DragMove();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
-
-        private void homeBtn_Click(object sender, RoutedEventArgs e)
-        {
-            HomePage homePage = new HomePage();
-            MainWindow main = (MainWindow)Application.Current.MainWindow;
-            main.FrameHolder.Content = homePage;
-        }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        private void tableBtn_Click(object sender, RoutedEventArgs e)
-        {
-            TablePage tablePage = new TablePage();
-            MainWindow main = (MainWindow)Application.Current.MainWindow;
-            main.FrameHolder.Content = tablePage;
-        }
 
-        private void displayBtn_Click(object sender, RoutedEventArgs e)
-        {
-            DisplayPage displayPage = new DisplayPage();
-            MainWindow main = (MainWindow)Application.Current.MainWindow;
-            main.FrameHolder.Content = displayPage;
-        }
     }
 }

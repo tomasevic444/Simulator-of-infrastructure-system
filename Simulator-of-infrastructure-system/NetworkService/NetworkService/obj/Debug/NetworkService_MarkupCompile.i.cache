@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Tomas\Desktop\HCI2\Simulator-of-infrastructure-system\NetworkService\NetworkService\obj\Debug\
+C:\Users\Tomas\Desktop\HCI3\Simulator-of-infrastructure-system\NetworkService\NetworkService\obj\Debug\
 NetworkService
 none
 false
 DEBUG;TRACE
-C:\Users\Tomas\Desktop\HCI2\Simulator-of-infrastructure-system\NetworkService\NetworkService\App.xaml
-4-365432160
+C:\Users\Tomas\Desktop\HCI3\Simulator-of-infrastructure-system\NetworkService\NetworkService\App.xaml
+4-1413726250
 
-112043407871
+142049368389
 13-1505183044
-Frames\DisplayPage.xaml;Frames\HomePage.xaml;Frames\TablePage.xaml;MainWindow.xaml;
+MainWindow.xaml;Views\DisplayView.xaml;Views\EntitiesView.xaml;Views\HomeView.xaml;
 
-False
+True
 

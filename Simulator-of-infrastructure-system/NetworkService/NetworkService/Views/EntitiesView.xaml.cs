@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace NetworkService.Frames
+namespace NetworkService.Views
 {
     /// <summary>
-    /// Interaction logic for HomePage.xaml
+    /// Interaction logic for EntitiesView.xaml
     /// </summary>
-    public partial class HomePage : Page
+    public partial class EntitiesView : UserControl
     {
-        public HomePage()
+        public EntitiesView()
         {
             InitializeComponent();
         }
