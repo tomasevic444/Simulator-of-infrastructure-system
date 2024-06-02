@@ -72,7 +72,7 @@ namespace NetworkService.Views
             }
         }
         public ObservableCollection<Entity> FlowMeters { get; set; }
-        public ObservableCollection<Entity> FilteredMeters { get; set; }
+        public ObservableCollection<Entity> FilteredEntities { get; set; }
 
         private string _idText;
         public string IDText
@@ -184,11 +184,11 @@ namespace NetworkService.Views
         {
 
             FlowMeters = MainWindowViewModel.Entities;
-            FilteredMeters = new ObservableCollection<Entity>();
+            FilteredEntities = new ObservableCollection<Entity>();
 
             foreach (Entity f in FlowMeters)
             {
-                FilteredMeters.Add(f);
+                FilteredEntities.Add(f);
             }
 
             //creating commands for keyboard
@@ -205,7 +205,7 @@ namespace NetworkService.Views
 
             //creating commands for adding and removing entities
             AddEntityCommand = new Commands(OnAddEntity, CanAddEntity);
-
+            RemoveEntityCommand = new Commands(OnRemoveEntity, CanRemoveEntity);
 
             FilterCommand = new Commands(Filter, CanFilter);
             ClearFiltersCommand = new Commands(ClearFilters);
@@ -264,14 +264,14 @@ namespace NetworkService.Views
             FilterType = null;
 
             //repopulating the table
-            FilteredMeters.Clear();
+            FilteredEntities.Clear();
             foreach (Entity f in FlowMeters)
-                FilteredMeters.Add(f);
+                FilteredEntities.Add(f);
         }
         private void Filter()
         {
             HideKeyboard();
-            FilteredMeters.Clear();
+            FilteredEntities.Clear();
 
             var filteredByType = new List<Entity>();
 
@@ -320,7 +320,7 @@ namespace NetworkService.Views
 
                 if (matches)
                 {
-                    FilteredMeters.Add(flowMeter);
+                    FilteredEntities.Add(flowMeter);
                 }
             }
 
@@ -378,14 +378,28 @@ namespace NetworkService.Views
         #region Creating/Removing
         private bool CanRemoveEntity()
         {
-            if (SelectedEntity != null)
-            {
-                return true;
-            }
-            return false;
+            return SelectedEntity != null;
         }
-       
-        private bool CanAddEntity()
+
+        private void OnRemoveEntity()
+        {
+            if (SelectedEntity == null) return;
+
+            if (MessageBox.Show(
+                "Are you sure you want to remove the selected entity?",
+                "Confirmation Dialog",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                FlowMeters.Remove(SelectedEntity);
+                FilteredEntities.Remove(SelectedEntity);
+                SelectedEntity = null;
+            }
+        }
+
+
+
+            private bool CanAddEntity()
         {
             bool allGood = true;
 

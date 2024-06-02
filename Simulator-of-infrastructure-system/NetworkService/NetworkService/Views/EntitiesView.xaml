@@ -44,14 +44,16 @@
                           SelectionMode="Single" CanUserResizeColumns="False" CanUserResizeRows="False"
                       AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" 
                       CanUserReorderColumns="False" CanUserAddRows="False" 
-                      ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Hidden" >
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"  ScrollViewer.HorizontalScrollBarVisibility="Hidden" HeadersVisibility="Column"
+          GridLinesVisibility="None" >
                         <DataGrid.ColumnHeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="Background" Value="Transparent"/>
                                 <Setter Property="Foreground" Value="#BCBEE0"/>
-                                <Setter Property="Padding" Value="10,0,0,10"/>
+                                <Setter Property="Padding" Value="0,0,0,10"/>
                                 <Setter Property="FontFamily" Value="Montserrat"/>
                                 <Setter Property="FontSize" Value="12"/>
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
                             </Style>
                         </DataGrid.ColumnHeaderStyle>
                         <DataGrid.RowStyle>
@@ -61,19 +63,29 @@
                                 <Setter Property="BorderBrush" Value="#060531"/>
                                 <Setter Property="FontFamily" Value="Montserrat"/>
                                 <Setter Property="FontSize" Value="15"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#334455"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#556677"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </Trigger>
+                                </Style.Triggers>
                             </Style>
                         </DataGrid.RowStyle>
                         <DataGrid.CellStyle>
                             <Style TargetType="DataGridCell">
                                 <Setter Property="Background" Value="Transparent"/>
                                 <Setter Property="Foreground" Value="#BCBEE0"/>
-                                <Setter Property="BorderBrush" Value="#060531"/>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
                                 <Setter Property="FontFamily" Value="Montserrat"/>
                                 <Setter Property="FontSize" Value="15"/>
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
                             </Style>
                         </DataGrid.CellStyle>
                         <DataGrid.Columns>
-                            <DataGridCheckBoxColumn Header="Delete"  Binding="{Binding Delete, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Width="20*" IsThreeState="False" x:Name="CBDelete"/>
                             <DataGridTextColumn Header="ID" Width="10*" IsReadOnly="True"  Binding= "{Binding ID}"/>
                             <DataGridTextColumn Header="Name" Width="30*" IsReadOnly="True" Binding="{Binding Name}" />
                             <DataGridTextColumn Header="Type" Width="30*" IsReadOnly="True" Binding="{Binding EntityType.Type}" />
@@ -313,7 +325,9 @@
                             Foreground="White"
                             FontSize="12"
                             FontFamily="Montserrat"
-                            Cursor="Hand"     
+                            Cursor="Hand"    
+                        Command="{Binding RemoveEntityCommand}" 
+                        IsEnabled="{Binding CanRemoveEntity}"
                         VerticalAlignment="Bottom"
                                     Margin="10 0 0 12">
                         <Button.Style>
