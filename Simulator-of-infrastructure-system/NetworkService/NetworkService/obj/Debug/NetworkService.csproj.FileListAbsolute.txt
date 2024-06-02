@@ -92,3 +92,4 @@ C:\Users\Tomas\Desktop\HCI3\Simulator-of-infrastructure-system\NetworkService\Ne
 C:\Users\Tomas\Desktop\HCI3\Simulator-of-infrastructure-system\NetworkService\NetworkService\obj\Debug\Views\EntitiesView.baml
 C:\Users\Tomas\Desktop\HCI3\Simulator-of-infrastructure-system\NetworkService\NetworkService\obj\Debug\Views\HomeView.baml
 C:\Users\Tomas\Desktop\HCI3\Simulator-of-infrastructure-system\NetworkService\NetworkService\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Tomas\Desktop\HCI3\Simulator-of-infrastructure-system\NetworkService\NetworkService\obj\Debug\App.baml

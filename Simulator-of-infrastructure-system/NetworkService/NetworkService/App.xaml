@@ -4,6 +4,78 @@
              xmlns:local="clr-namespace:NetworkService"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+
+        <Color x:Key="PrimaryColor">#462AD8</Color>
+        <Color x:Key="PrimaryColorDark">#0F4C75</Color>
+        <Color x:Key="SecondaryColor">#0F4C75</Color>
+        <Color x:Key="HoverColor">#166EA9</Color>
+        <Color x:Key="SecondaryColorLight">#535c6b</Color>
+        <Color x:Key="AccentColor">#BBE1FA</Color>
+        <Color x:Key="TextColor">#EEEEEE</Color>
+        <Style x:Key="CustomButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#462AD8" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="BorderBrush" Value="White" />
+            <Setter Property="Padding" Value="10,5" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            CornerRadius="3">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="{StaticResource PrimaryDarkBrush}" />
+                                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation 
+                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" 
+                                                To="{StaticResource HoverColor}" 
+                                                Duration="0:0:0.05" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation 
+                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" 
+                                                To="{StaticResource PrimaryColor}" 
+                                                Duration="0:0:0.05" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="True" />
+                                    <Condition Property="IsEnabled" Value="False" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" Value="{StaticResource PrimaryDarkBrush}" />
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="False" />
+                                    <Condition Property="IsEnabled" Value="False" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" Value="{StaticResource PrimaryDarkBrush}" />
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>
