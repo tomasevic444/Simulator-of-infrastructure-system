@@ -87,6 +87,52 @@ namespace NetworkService.ViewModels
                 SetProperty(ref _filterType, value);
                 FilterCommand.RaiseCanExecuteChanged();
             }
+
+        }
+        private bool _isLowerThanChecked;
+        public bool IsLowerThanChecked
+        {
+            get => _isLowerThanChecked;
+            set
+            {
+                SetProperty(ref _isLowerThanChecked, value);
+                if (_isLowerThanChecked)
+                {
+                    IsEqualChecked = false;
+                    IsGreaterThanChecked = false;
+                }
+                FilterCommand.RaiseCanExecuteChanged();
+            }
+        }
+        private bool _isEqualChecked;
+        public bool IsEqualChecked
+        {
+            get => _isEqualChecked;
+            set
+            {
+                SetProperty(ref _isEqualChecked, value);
+                if (_isEqualChecked)
+                {
+                    IsLowerThanChecked = false;
+                    IsGreaterThanChecked = false;
+                }
+                FilterCommand.RaiseCanExecuteChanged();
+            }
+        }
+        private bool _isGreaterThanChecked;
+        public bool IsGreaterThanChecked
+        {
+            get => _isGreaterThanChecked;
+            set
+            {
+                SetProperty(ref _isGreaterThanChecked, value);
+                if (_isGreaterThanChecked)
+                {
+                    IsLowerThanChecked = false;
+                    IsEqualChecked = false;
+                }
+                FilterCommand.RaiseCanExecuteChanged();
+            }
         }
 
         public Commands AddEntityCommand { get; set; }
@@ -104,7 +150,8 @@ namespace NetworkService.ViewModels
 
             AddEntityCommand = new Commands(OnAddEntity, CanAddEntity);
 
-
+            FilterCommand = new Commands(Filter, CanFilter);
+            ClearFiltersCommand = new Commands(ClearFilters);
 
             Types = new List<string>
             {
@@ -182,9 +229,97 @@ namespace NetworkService.ViewModels
 
 
             AddEntityCommand.RaiseCanExecuteChanged();
-
-
         }
+        private bool CanFilter()
+        {
+            if (!string.IsNullOrEmpty(FilterType) &&
+                !IsEqualChecked &&
+                !IsGreaterThanChecked &&
+                !IsLowerThanChecked &&
+                string.IsNullOrWhiteSpace(FilterText))
+            {
+                return true;
+            }
 
+            bool isFilterTextValid = int.TryParse(FilterText, out _);
+
+
+            if (isFilterTextValid &&
+                (IsEqualChecked || IsGreaterThanChecked || IsLowerThanChecked))
+            {
+                return true;
+            }
+
+            return false;
+        }
+        private void ClearFilters()
+        {
+
+            IsEqualChecked = false;
+            IsGreaterThanChecked = false;
+            IsLowerThanChecked = false;
+            FilterText = string.Empty;
+            FilterType = null;
+
+            FilteredEntities.Clear();
+            foreach (Entity f in Entities)
+                FilteredEntities.Add(f);
+        }
+        private void Filter()
+        {
+
+            FilteredEntities.Clear();
+
+            var filteredByType = new List<Entity>();
+
+            // First pass: Filter by type
+            if (!string.IsNullOrEmpty(FilterType))
+            {
+                foreach (Entity flowMeter in Entities)
+                {
+                    if (flowMeter.EntityType.Type.Equals(FilterType))
+                    {
+                        filteredByType.Add(flowMeter);
+                    }
+                }
+            }
+            else
+            {
+                filteredByType.AddRange(Entities);
+            }
+
+            // Second pass: Filter by ID criteria
+            foreach (Entity flowMeter in filteredByType)
+            {
+                bool matches = true;
+                if (!string.IsNullOrWhiteSpace(FilterText))
+                {
+                    if (int.TryParse(FilterText, out int filterValue))
+                    {
+                        if (IsLowerThanChecked && flowMeter.ID >= filterValue)
+                        {
+                            matches = false;
+                        }
+                        if (IsEqualChecked && flowMeter.ID != filterValue)
+                        {
+                            matches = false;
+                        }
+                        if (IsGreaterThanChecked && flowMeter.ID <= filterValue)
+                        {
+                            matches = false;
+                        }
+                    }
+                    else
+                    {
+                        matches = false; // Invalid FilterText means no match
+                    }
+                }
+
+                if (matches)
+                {
+                    FilteredEntities.Add(flowMeter);
+                }
+            }
+        }
     }
 }

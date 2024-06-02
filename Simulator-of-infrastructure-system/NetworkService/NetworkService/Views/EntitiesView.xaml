@@ -114,11 +114,13 @@
 
                         <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" >
                             <Label Grid.ColumnSpan="3" Content="Type:" VerticalAlignment="Center" FontSize="10" FontWeight="Bold" Foreground="White"  />
-                            <ComboBox   Width="80"  Height="20" FontSize="18" FontWeight="Bold" ItemsSource="{Binding AdresneKlase}" SelectedIndex="{Binding OdabranaKlasaIndeks}" Margin="0 0 0 0" />
+                            <ComboBox   Width="80"  Height="20" FontSize="18" FontWeight="Bold" ItemsSource="{Binding Types}"
+                            SelectedItem="{Binding FilterType, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" />
                             <Button x:Name="btnClear"                          
                             BorderThickness="0"
                             Content="Clear"
                             Foreground="White"
+                            Command="{Binding ClearFiltersCommand}"
                             FontSize="12"
                             FontFamily="Montserrat"
                             Cursor="Hand"     
@@ -148,17 +150,17 @@
                         <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6">
 
                             <Viewbox Height="20" Margin="3, 0, 3, 0">
-                                <RadioButton Content=">" Foreground="White" IsChecked="{Binding VeceCekirano}" />
+                                <RadioButton Content=">" Foreground="White"  IsChecked="{Binding IsGreaterThanChecked,Mode=TwoWay}" />
                             </Viewbox>
                             <Viewbox Height="20" Margin="0, 0, 3, 0">
-                                <RadioButton Content="&lt;" Foreground="White" IsChecked="{Binding ManjeCekirano}" />
+                                <RadioButton Content="&lt;" Foreground="White" IsChecked="{Binding IsLowerThanChecked, Mode=TwoWay}" />
                             </Viewbox>
                             <Viewbox Height="20" Margin="0, 0, 3, 0">
-                                <RadioButton Content="=" Foreground="White" IsChecked="{Binding JednakoCekirano}" />
+                                <RadioButton Content="=" Foreground="White" IsChecked="{Binding IsEqualChecked, Mode=TwoWay}" />
                             </Viewbox>
 
                             <TextBox Height="20" Width="90" FontSize="10" FontWeight="Bold" 
-                             MaxLength="5" Text="{Binding TrenutniId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                             MaxLength="5" Text="{Binding Path=FilterText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
                                 <Validation.ErrorTemplate>
                                     <ControlTemplate>
                                         <DockPanel>
@@ -176,6 +178,7 @@
                             <Button x:Name="btnFilter"                          
                             BorderThickness="0"
                             Content="Filter"
+                              Command="{Binding FilterCommand}"
                             Foreground="White"
                             FontSize="12"
                             FontFamily="Montserrat"
