@@ -46,6 +46,7 @@ namespace NetworkService.ViewModels
         }
         public ObservableCollection<Entity> Entities { get; set; }
         public ObservableCollection<Entity> FilteredEntities { get; set; }
+      
 
             private string _idText;
         public string IDText
@@ -98,10 +99,9 @@ namespace NetworkService.ViewModels
 
             Entities = MainWindowViewModel.Entities;
             FilteredEntities = new ObservableCollection<Entity>();
-            foreach (Entity f in Entities)
-            {
-                FilteredEntities.Add(f);
-            }
+
+            Entities.CollectionChanged += OnEntitiesCollectionChanged;
+
             AddEntityCommand = new Commands(OnAddEntity, CanAddEntity);
 
 
@@ -117,7 +117,14 @@ namespace NetworkService.ViewModels
             NameText = "";
             SelectedType = Types[0];
         }
-
+        private void OnEntitiesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            FilteredEntities.Clear();
+            foreach (var entity in Entities)
+            {
+                FilteredEntities.Add(entity);
+            }
+        }
         private bool CanAddEntity()
         {
             bool allGood = true;
