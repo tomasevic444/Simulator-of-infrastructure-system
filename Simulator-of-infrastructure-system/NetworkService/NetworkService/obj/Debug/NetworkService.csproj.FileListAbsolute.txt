@@ -97,3 +97,5 @@ C:\Users\Tomas\Desktop\HCI3\Simulator-of-infrastructure-system\NetworkService\Ne
 C:\Users\Tomas\Desktop\HCI3\Simulator-of-infrastructure-system\NetworkService\NetworkService\bin\Debug\Microsoft.Xaml.Behaviors.pdb
 C:\Users\Tomas\Desktop\HCI3\Simulator-of-infrastructure-system\NetworkService\NetworkService\bin\Debug\Microsoft.Xaml.Behaviors.xml
 C:\Users\Tomas\Desktop\HCI3\Simulator-of-infrastructure-system\NetworkService\NetworkService\obj\Debug\NetworkService.csproj.CopyComplete
+C:\Users\Tomas\Desktop\HCI3\Simulator-of-infrastructure-system\NetworkService\NetworkService\bin\Debug\FontAwesome.WPF.dll
+C:\Users\Tomas\Desktop\HCI3\Simulator-of-infrastructure-system\NetworkService\NetworkService\bin\Debug\FontAwesome.WPF.xml

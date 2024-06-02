@@ -26,9 +26,15 @@
                     <ControlTemplate TargetType="Button">
                         <Border 
                             Background="{TemplateBinding Background}" 
-                            BorderBrush="{TemplateBinding BorderBrush}" 
                             BorderThickness="{TemplateBinding BorderThickness}" 
                             CornerRadius="3">
+                            <Border.BorderBrush>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="#462AD8" Offset="0"/>
+                                    <GradientStop Color="#DA34AE" Offset="0.75"/>
+                                    <GradientStop Color="#8A16C1" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.BorderBrush>
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>

@@ -24,7 +24,7 @@ namespace NetworkService.ViewModels
         private bool _dragging = false;
         public int _draggingSourceIndex = -1;
 
-        public static ObservableCollection<Entity> FlowMeters { get; set; }
+        public static ObservableCollection<Entity> Entities { get; set; }
         public static Dictionary<int, Entity> AddedToGrid { get; set; } = new Dictionary<int, Entity>();
     }
 }

@@ -71,7 +71,7 @@ namespace NetworkService.Views
                 RemoveEntityCommand.RaiseCanExecuteChanged();
             }
         }
-        public ObservableCollection<Entity> FlowMeters { get; set; }
+        public ObservableCollection<Entity> Entities { get; set; }
         public ObservableCollection<Entity> FilteredEntities { get; set; }
 
         private string _idText;
@@ -183,10 +183,10 @@ namespace NetworkService.Views
         public EntitiesViewModel()
         {
 
-            FlowMeters = MainWindowViewModel.Entities;
+            Entities = MainWindowViewModel.Entities;
             FilteredEntities = new ObservableCollection<Entity>();
 
-            foreach (Entity f in FlowMeters)
+            foreach (Entity f in Entities)
             {
                 FilteredEntities.Add(f);
             }
@@ -212,9 +212,8 @@ namespace NetworkService.Views
 
             Types = new List<string>
             {
-                "Volume",
-                "Turbine",
-                "Electronic"
+                "Cable Sensor",
+                "Digital manometer"
             };
 
             IDBorderBrush = new SolidColorBrush(Colors.Transparent);
@@ -265,7 +264,7 @@ namespace NetworkService.Views
 
             //repopulating the table
             FilteredEntities.Clear();
-            foreach (Entity f in FlowMeters)
+            foreach (Entity f in Entities)
                 FilteredEntities.Add(f);
         }
         private void Filter()
@@ -278,7 +277,7 @@ namespace NetworkService.Views
             // First pass: Filter by type
             if (!string.IsNullOrEmpty(FilterType))
             {
-                foreach (Entity flowMeter in FlowMeters)
+                foreach (Entity flowMeter in Entities)
                 {
                     if (flowMeter.EntityType.Type.Equals(FilterType))
                     {
@@ -288,7 +287,7 @@ namespace NetworkService.Views
             }
             else
             {
-                filteredByType.AddRange(FlowMeters);
+                filteredByType.AddRange(Entities);
             }
 
             // Second pass: Filter by ID criteria
@@ -391,7 +390,7 @@ namespace NetworkService.Views
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                FlowMeters.Remove(SelectedEntity);
+                Entities.Remove(SelectedEntity);
                 FilteredEntities.Remove(SelectedEntity);
                 SelectedEntity = null;
             }
@@ -410,7 +409,7 @@ namespace NetworkService.Views
                 {
                     intID = int.Parse(IDText);
 
-                    foreach (Entity f in FlowMeters)
+                    foreach (Entity f in Entities)
                     {
                         if (f.ID == intID)
                         {
@@ -451,7 +450,7 @@ namespace NetworkService.Views
             string type = (SelectedType as string);
             newFlowMeter.EntityType = new EntityType(type);
 
-            FlowMeters.Add(newFlowMeter);
+            Entities.Add(newFlowMeter);
 
             IDText = string.Empty;
             NameText = string.Empty;
