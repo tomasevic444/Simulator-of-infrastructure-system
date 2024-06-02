@@ -93,3 +93,7 @@ C:\Users\Tomas\Desktop\HCI3\Simulator-of-infrastructure-system\NetworkService\Ne
 C:\Users\Tomas\Desktop\HCI3\Simulator-of-infrastructure-system\NetworkService\NetworkService\obj\Debug\Views\HomeView.baml
 C:\Users\Tomas\Desktop\HCI3\Simulator-of-infrastructure-system\NetworkService\NetworkService\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Tomas\Desktop\HCI3\Simulator-of-infrastructure-system\NetworkService\NetworkService\obj\Debug\App.baml
+C:\Users\Tomas\Desktop\HCI3\Simulator-of-infrastructure-system\NetworkService\NetworkService\bin\Debug\Microsoft.Xaml.Behaviors.dll
+C:\Users\Tomas\Desktop\HCI3\Simulator-of-infrastructure-system\NetworkService\NetworkService\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+C:\Users\Tomas\Desktop\HCI3\Simulator-of-infrastructure-system\NetworkService\NetworkService\bin\Debug\Microsoft.Xaml.Behaviors.xml
+C:\Users\Tomas\Desktop\HCI3\Simulator-of-infrastructure-system\NetworkService\NetworkService\obj\Debug\NetworkService.csproj.CopyComplete

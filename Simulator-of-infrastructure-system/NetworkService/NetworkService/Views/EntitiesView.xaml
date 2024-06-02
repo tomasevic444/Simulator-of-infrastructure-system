@@ -5,9 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:fa5="http://schemas.fontawesome.com/icons/"
              xmlns:local="clr-namespace:NetworkService.Views" 
-             d:DataContext="{d:DesignInstance Type=viewmodels:EntitiesViewModel}"
+             d:DataContext="{d:DesignInstance Type=local:EntitiesViewModel}"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-             xmlns:model="clr-namespace:NetworkService.Models" xmlns:viewmodels="clr-namespace:NetworkService.ViewModels"
+             xmlns:model="clr-namespace:NetworkService.Models" 
+             xmlns:viewmodels="clr-namespace:NetworkService.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="350">
     <Border CornerRadius="30" Height="500" Width="320">
@@ -159,16 +160,16 @@
                                 <RadioButton Content="=" Foreground="White" IsChecked="{Binding IsEqualChecked, Mode=TwoWay}" />
                             </Viewbox>
 
-                            <TextBox Height="20" Width="90" FontSize="10" FontWeight="Bold" 
+                            <TextBox x:Name="FilterTextBox" Height="20" Width="90" FontSize="10" FontWeight="Bold" 
                              MaxLength="5" Text="{Binding Path=FilterText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
-                                <Validation.ErrorTemplate>
-                                    <ControlTemplate>
-                                        <DockPanel>
-                                            <TextBlock Foreground="Red" DockPanel.Dock="Bottom" FontWeight="Bold" FontSize="16" Margin="0, 3, 0, 0">Nevalidan ID!</TextBlock>
-                                            <AdornedElementPlaceholder x:Name="ErrorAdorner"></AdornedElementPlaceholder>
-                                        </DockPanel>
-                                    </ControlTemplate>
-                                </Validation.ErrorTemplate>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="GotFocus">
+                                        <i:InvokeCommandAction Command="{Binding TextBoxGotFocusCommand}" CommandParameter="{Binding ElementName=FilterTextBox}"/>
+                                    </i:EventTrigger>
+                                    <i:EventTrigger EventName="TextChanged">
+                                        <i:InvokeCommandAction Command="{Binding TextChangedCommand}" CommandParameter="{Binding ElementName=FilterTextBox}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
                                 <TextBox.Resources>
                                     <Style TargetType="{x:Type Border}">
                                         <Setter Property="CornerRadius" Value="5"/>
@@ -248,12 +249,22 @@
                             <!-- Id-->
                             <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" >
                                 <Label  Margin="19 0 0 0" Grid.ColumnSpan="3" Content="Id:" VerticalAlignment="Center" FontSize="10" FontWeight="Bold" Foreground="White"  />
-                                <TextBox   Width="80"  Height="17" FontSize="10" FontWeight="Bold" Margin="0 0 0 0" Text="{Binding IDText,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBox   x:Name="IDTextBox" Width="80"  Height="17" FontSize="10" FontWeight="Bold" Margin="0,2" Text="{Binding IDText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="GotFocus">
+                                            <i:InvokeCommandAction Command="{Binding TextBoxGotFocusCommand}" CommandParameter="{Binding ElementName=IDTextBox}"/>
+                                        </i:EventTrigger>
+                                        <i:EventTrigger EventName="TextChanged">
+                                            <i:InvokeCommandAction Command="{Binding TextChangedCommand}" CommandParameter="{Binding ElementName=IDTextBox}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </TextBox>
                             </StackPanel>
                             <!-- Name-->
                             <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6" >
                                 <Label Grid.ColumnSpan="3" Content="Name:" VerticalAlignment="Center" FontSize="10" FontWeight="Bold" Foreground="White"  />
-                                <TextBox   Width="80"  Height="17" FontSize="10" FontWeight="Bold"  Margin="1 0 0 0" Text="{Binding NameText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBox  x:Name="NameTextBox" Width="80"  Height="17" FontSize="10" FontWeight="Bold"  Margin="1 0 0 0" Text="{Binding NameText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  model:TextBoxBehavior.GotFocusCommand=
+                        "{Binding TextBoxGotFocusCommand}"></TextBox>
                             </StackPanel>
                             <!-- Type-->
                             <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="6"  >

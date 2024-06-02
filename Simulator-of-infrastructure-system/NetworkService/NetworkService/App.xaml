@@ -33,8 +33,8 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Background" Value="{StaticResource PrimaryDarkBrush}" />
-                                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+                                <Setter Property="Background" Value="#462AD8" />
+                                <Setter Property="Foreground" Value="White" />
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Trigger.EnterActions>
@@ -63,14 +63,14 @@
                                     <Condition Property="IsMouseOver" Value="True" />
                                     <Condition Property="IsEnabled" Value="False" />
                                 </MultiTrigger.Conditions>
-                                <Setter Property="Background" Value="{StaticResource PrimaryDarkBrush}" />
+                                <Setter Property="Background" Value="#462AD8" />
                             </MultiTrigger>
                             <MultiTrigger>
                                 <MultiTrigger.Conditions>
                                     <Condition Property="IsMouseOver" Value="False" />
                                     <Condition Property="IsEnabled" Value="False" />
                                 </MultiTrigger.Conditions>
-                                <Setter Property="Background" Value="{StaticResource PrimaryDarkBrush}" />
+                                <Setter Property="Background" Value="#462AD8" />
                             </MultiTrigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
