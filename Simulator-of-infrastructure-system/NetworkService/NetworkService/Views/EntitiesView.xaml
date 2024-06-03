@@ -89,7 +89,7 @@
                             <DataGridTextColumn Header="ID" Width="10*" IsReadOnly="True"  Binding= "{Binding ID}"/>
                             <DataGridTextColumn Header="Name" Width="30*" IsReadOnly="True" Binding="{Binding Name}" />
                             <DataGridTextColumn Header="Type" Width="30*" IsReadOnly="True" Binding="{Binding EntityType.Type}" />
-                            <DataGridTextColumn Header="Value" Width="30*" IsReadOnly="True" Binding="{Binding Value}" />
+                            <DataGridTextColumn Header="Value" Width="10*" IsReadOnly="True" Binding="{Binding Value}" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>

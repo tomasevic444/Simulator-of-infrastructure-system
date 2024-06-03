@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/display.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/exit.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/cable%20sensor.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/digital%20manometer.png")]
 
 

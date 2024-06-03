@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace NetworkService.Models
 {
+    public enum ValueState { Normal, Low, High }
     public class Entity : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         int id;
+        ValueState _valueState;
         string name;
         EntityType entityType;
         int _value;
@@ -72,9 +74,30 @@ namespace NetworkService.Models
                 {
                     _value = value;
                     OnPropertyChanged(nameof(Value));
+
+                    if (_value < 675) ValueState = ValueState.Low;
+                    else if (_value > 735) ValueState = ValueState.High;
+                    else ValueState = ValueState.Normal;
+
                 }
             }
         }
+        public ValueState ValueState
+        {
+            get
+            {
+                return _valueState;
+            }
+            set
+            {
+                if (_valueState != value)
+                {
+                    _valueState = value;
+                    OnPropertyChanged(nameof(ValueState));
+                }
+            }
+        }
+
 
         private void OnPropertyChanged(string propertyName)
         {

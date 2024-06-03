@@ -11,8 +11,7 @@
         ResizeMode="NoResize"
         AllowsTransparency="True"
     Background="Transparent"
-    WindowStyle="None"
-        MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    WindowStyle="None">
     <Window.DataContext>
         <viewModel:MainWindowViewModel/>
     </Window.DataContext>

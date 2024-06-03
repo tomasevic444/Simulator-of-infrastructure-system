@@ -64,6 +64,7 @@
     <Compile Include="Helpers\BindableBase.cs" />
     <Compile Include="Helpers\Commands.cs" />
     <Compile Include="Helpers\XmlHelper.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\TextBoxBehavior.cs" />
     <Compile Include="ViewModels\DisplayViewModel.cs" />
     <Compile Include="ViewModels\EntitiesViewModel.cs" />
@@ -146,6 +147,9 @@
     <Resource Include="Images\display.png" />
     <Resource Include="Images\exit.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Cable Sensor.png" />
+    <Resource Include="Images\Digital manometer.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

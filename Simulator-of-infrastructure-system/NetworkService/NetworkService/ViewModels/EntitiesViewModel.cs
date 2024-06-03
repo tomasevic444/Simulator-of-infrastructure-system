@@ -229,10 +229,9 @@ namespace NetworkService.Views
 
         #endregion
 
-        #region Filter Actions
         private bool CanFilter()
         {
-            // Enable filtering if there is only a selected filter type and no other criteria
+
             if (!string.IsNullOrEmpty(FilterType) &&
                 !IsEqualChecked &&
                 !IsGreaterThanChecked &&
@@ -243,8 +242,6 @@ namespace NetworkService.Views
             }
 
             bool isFilterTextValid = int.TryParse(FilterText, out _);
-
-            // Enable filtering if FilterText is a valid number and at least one of the ID criteria is checked
             if (isFilterTextValid &&
                 (IsEqualChecked || IsGreaterThanChecked || IsLowerThanChecked))
             {
@@ -262,7 +259,6 @@ namespace NetworkService.Views
             FilterText = string.Empty;
             FilterType = null;
 
-            //repopulating the table
             FilteredEntities.Clear();
             foreach (Entity f in Entities)
                 FilteredEntities.Add(f);
@@ -274,7 +270,6 @@ namespace NetworkService.Views
 
             var filteredByType = new List<Entity>();
 
-            // First pass: Filter by type
             if (!string.IsNullOrEmpty(FilterType))
             {
                 foreach (Entity flowMeter in Entities)
@@ -290,7 +285,6 @@ namespace NetworkService.Views
                 filteredByType.AddRange(Entities);
             }
 
-            // Second pass: Filter by ID criteria
             foreach (Entity flowMeter in filteredByType)
             {
                 bool matches = true;
@@ -324,10 +318,6 @@ namespace NetworkService.Views
             }
 
         }
-
-        #endregion
-
-        #region Text Changed Action
         private void OnTextChanged(TextBox textBox)
         {
             if (textBox.Name.Equals("IDTextBox") || textBox.Name.Equals("FilterTextBox"))
@@ -372,9 +362,6 @@ namespace NetworkService.Views
             }
         }
 
-        #endregion
-
-        #region Creating/Removing
         private bool CanRemoveEntity()
         {
             return SelectedEntity != null;
@@ -448,7 +435,7 @@ namespace NetworkService.Views
                 Name = NameText.Trim()
             };
             string type = (SelectedType as string);
-            newFlowMeter.EntityType = new EntityType(type);
+            newFlowMeter.EntityType = new EntityType(type, $"../../Images/{type.ToLower()}.png");
 
             Entities.Add(newFlowMeter);
 
@@ -463,15 +450,6 @@ namespace NetworkService.Views
             AddEntityCommand.RaiseCanExecuteChanged();
 
         }
-
-        #endregion
-
-        #region Undo
-
-
-        #endregion
-
-        #region Keyboard Actions
 
         private void HideKeyboard()
         {
@@ -521,27 +499,21 @@ namespace NetworkService.Views
             }
             else if (SelectedTextBox.Name.Equals("IDTextBox"))
             {
-                // Create a color animation
                 var colorAnimation = new ColorAnimation
                 {
                     From = Colors.Red,
                     To = (Color)System.Windows.Application.Current.Resources["PrimaryColorDark"],
                     Duration = TimeSpan.FromSeconds(0.3),
                     AutoReverse = false,
-                    RepeatBehavior = new RepeatBehavior(1) // Repeat 3 times
+                    RepeatBehavior = new RepeatBehavior(1) 
                 };
 
-                // Create a storyboard and add the animation to it
                 var storyboard = new Storyboard();
                 storyboard.Children.Add(colorAnimation);
 
-                // Set the target property to the background color
                 Storyboard.SetTargetProperty(colorAnimation, new PropertyPath("(TextBox.Background).(SolidColorBrush.Color)"));
-
-                // Set the target object to the selected TextBox
                 Storyboard.SetTarget(colorAnimation, SelectedTextBox);
 
-                // Begin the animation
                 storyboard.Begin();
             }
 
@@ -553,7 +525,7 @@ namespace NetworkService.Views
                 SelectedTextBox.Text += keyPressed;
             }
         }
-        #endregion
+
 
     }
 

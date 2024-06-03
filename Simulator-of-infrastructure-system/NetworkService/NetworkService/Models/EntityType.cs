@@ -11,6 +11,7 @@ namespace NetworkService.Models
     {
         public event PropertyChangedEventHandler PropertyChanged;
         string type;
+        string _imagePath;
         public string Type
         {
             get
@@ -26,9 +27,26 @@ namespace NetworkService.Models
                 }
             }
         }
-        public EntityType(string type)
+        public string ImagePath
         {
-            this.type = type;
+            get
+            {
+                return _imagePath;
+            }
+            set
+            {
+                if (value != _imagePath)
+                {
+                    _imagePath = value;
+                    OnPropertyChanged("ImagePath");
+                }
+            }
+        }
+
+        public EntityType(string name, string imagePath)
+        {
+            this.type = name;
+            this._imagePath = imagePath;
         }
 
         public EntityType()
