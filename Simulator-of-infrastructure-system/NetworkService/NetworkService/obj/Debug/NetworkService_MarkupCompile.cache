@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Tomas\Desktop\HCI3\Simulator-of-infrastructure-system\NetworkService\NetworkService\App.xaml
-4-1413726250
+5-1812388101
 
-181547488320
+19326917040
 152059627522
-MainWindow.xaml;Views\DisplayView.xaml;Views\EntitiesView.xaml;Views\HomeView.xaml;
+MainWindow.xaml;Views\DisplayView.xaml;Views\EntitiesView.xaml;Views\GraphView.xaml;Views\HomeView.xaml;
 
 False
 

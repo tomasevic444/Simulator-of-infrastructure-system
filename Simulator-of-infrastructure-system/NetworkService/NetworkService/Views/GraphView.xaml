@@ -1,0 +1,87 @@
+﻿<UserControl x:Class="NetworkService.Views.GraphView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NetworkService.Views"
+             mc:Ignorable="d" 
+                  d:DesignHeight="500" d:DesignWidth="350">
+    <Border CornerRadius="30" Height="500" Width="320">
+        <Border CornerRadius="30"                    
+                BorderThickness="2"
+                Opacity="0.95">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="#060531" Offset="0"/>
+                    <GradientStop Color="#1B1448" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel
+            Orientation="Vertical"
+            Grid.Row="0">
+
+                    <TextBlock
+                Text="Select entity to display:"
+                TextAlignment="Center"
+                Foreground="White"
+                FontSize="25"
+                TextWrapping="WrapWithOverflow"
+                Margin="0 40 0 0" Width="315" Height="60">
+
+                    </TextBlock>
+
+
+                    <ComboBox
+                x:Name="SelectionComboBox"
+                Width="250"
+                Height="40"
+                Grid.Row="0"
+                ItemsSource="{Binding Entities}"
+                SelectedItem="{Binding SelectedMeter}"               
+                >
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock 
+                                Foreground="Black"
+                                Text="ID :"
+                                Margin="0 -3 0 0"
+                                FontSize="20"
+                                Padding="3"/>
+                                    <TextBlock 
+                                Foreground="Black"
+                                Text="{Binding ID}"
+                                Margin="0 -3 0 0"
+                                FontSize="20"
+                                Padding="3"/>
+                                    <TextBlock
+                                Foreground="White"
+                                Text="{Binding Name}"
+                                Margin="10 -3 0 0"
+                                FontSize="20"
+                                Padding="3"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+
+                    </ComboBox>
+
+
+                </StackPanel>
+
+               
+            </Grid>
+        </Border>
+    </Border>
+</UserControl>
+

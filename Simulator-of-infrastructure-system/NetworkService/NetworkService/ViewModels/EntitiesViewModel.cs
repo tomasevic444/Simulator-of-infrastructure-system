@@ -272,11 +272,11 @@ namespace NetworkService.Views
 
             if (!string.IsNullOrEmpty(FilterType))
             {
-                foreach (Entity flowMeter in Entities)
+                foreach (Entity entity in Entities)
                 {
-                    if (flowMeter.EntityType.Type.Equals(FilterType))
+                    if (entity.EntityType.Type.Equals(FilterType))
                     {
-                        filteredByType.Add(flowMeter);
+                        filteredByType.Add(entity);
                     }
                 }
             }
@@ -285,22 +285,22 @@ namespace NetworkService.Views
                 filteredByType.AddRange(Entities);
             }
 
-            foreach (Entity flowMeter in filteredByType)
+            foreach (Entity entity in filteredByType)
             {
                 bool matches = true;
                 if (!string.IsNullOrWhiteSpace(FilterText))
                 {
                     if (int.TryParse(FilterText, out int filterValue))
                     {
-                        if (IsLowerThanChecked && flowMeter.ID >= filterValue)
+                        if (IsLowerThanChecked && entity.ID >= filterValue)
                         {
                             matches = false;
                         }
-                        if (IsEqualChecked && flowMeter.ID != filterValue)
+                        if (IsEqualChecked && entity.ID != filterValue)
                         {
                             matches = false;
                         }
-                        if (IsGreaterThanChecked && flowMeter.ID <= filterValue)
+                        if (IsGreaterThanChecked && entity.ID <= filterValue)
                         {
                             matches = false;
                         }
@@ -313,7 +313,7 @@ namespace NetworkService.Views
 
                 if (matches)
                 {
-                    FilteredEntities.Add(flowMeter);
+                    FilteredEntities.Add(entity);
                 }
             }
 

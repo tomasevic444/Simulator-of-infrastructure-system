@@ -16,6 +16,7 @@ namespace NetworkService.Models
         string name;
         EntityType entityType;
         int _value;
+        List<Pair<DateTime, int>> _last_5_values;
 
         public int ID
         {
@@ -97,7 +98,21 @@ namespace NetworkService.Models
                 }
             }
         }
-
+        public List<Pair<DateTime, int>> Last_5_Values
+        {
+            get
+            {
+                return _last_5_values;
+            }
+            set
+            {
+                if (_last_5_values != value)
+                {
+                    _last_5_values = value;
+                    OnPropertyChanged(nameof(Last_5_Values));
+                }
+            }
+        }
 
         private void OnPropertyChanged(string propertyName)
         {

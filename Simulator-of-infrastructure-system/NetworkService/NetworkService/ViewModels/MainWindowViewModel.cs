@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace NetworkService.ViewModels
 {
@@ -48,15 +49,19 @@ namespace NetworkService.ViewModels
                 SelectedContent = new DisplayView();
 
             }
-         //   else if (viewName == "Graph" && SelectedContent.GetType() != typeof(GraphView))
-          //  {
-            //    SelectedContent = new GraphView();
+            else if (viewName == "Graph" && SelectedContent.GetType() != typeof(GraphView))
+           {
+                SelectedContent = new GraphView();
 
-           // }
+            }
             else if (viewName == "Home" && SelectedContent.GetType() != typeof(HomeView))
             { 
                 SelectedContent = new HomeView();
 
+            }
+            else if (viewName == "Exit" && SelectedContent.GetType() != typeof(HomeView))
+            {
+                Application.Current.Shutdown();
             }
         }
     }
