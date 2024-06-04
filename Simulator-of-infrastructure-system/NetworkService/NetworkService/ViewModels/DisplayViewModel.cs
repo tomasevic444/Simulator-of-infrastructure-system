@@ -1,16 +1,22 @@
-﻿using NetworkService.Helpers;
-using NetworkService.Models;
+﻿using NetworkService.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using NetworkService.Helpers;
+using System.Threading;
 using System.Windows.Shapes;
+using System.Windows.Navigation;
+using NetworkService.Views;
+using System.ComponentModel;
+using System.Linq;
+using System.Diagnostics;
+using NetworkService.ViewModels;
 
 namespace NetworkService.ViewModels
 {
@@ -27,6 +33,7 @@ namespace NetworkService.ViewModels
                 SetProperty(ref _selectedEntity, value);
             }
         }
+
         //dragging item info
         private Entity _draggedItem = null;
         private bool _dragging = false;
@@ -150,7 +157,8 @@ namespace NetworkService.ViewModels
             Categories = Categories ?? new ObservableCollection<Category>
             {
                 new Category("Cable Sensor"),
-                new Category("Digital manometer")
+                new Category("Digital manometer"),
+
             };
             Categories[0].Entities.Clear();
             Categories[1].Entities.Clear();
@@ -213,7 +221,7 @@ namespace NetworkService.ViewModels
                 Y1 = ConvertToAbsoluteY(sourceIndex),
                 X2 = ConvertToAbsoluteX(destinationIndex),
                 Y2 = ConvertToAbsoluteY(destinationIndex),
-                Stroke = Brushes.Teal,
+                Stroke = Brushes.MediumPurple,
                 StrokeThickness = 3,
                 StrokeStartLineCap = PenLineCap.Round,
                 StrokeEndLineCap = PenLineCap.Round
@@ -394,7 +402,12 @@ namespace NetworkService.ViewModels
 
             int index = int.Parse(indexString);
 
+            if (!CanvasCollection[index].Resources.Contains("taken"))
+            {
+              
+                return; //if nothing is inside the canvas, return
 
+            }
             if (_draggingSourceIndex == -1) //if the action came from the clear button, delete lines
             {
                 SaveState();
@@ -501,7 +514,9 @@ namespace NetworkService.ViewModels
             }
 
             List<object> state = new List<object>() { entityState, lineState };
-
+            //pushing state onto an undo stack
+            MainWindowViewModel.UndoStack.Push(
+                new SaveState<CommandType, object>(CommandType.CanvasManipulation, state));
 
         }
 

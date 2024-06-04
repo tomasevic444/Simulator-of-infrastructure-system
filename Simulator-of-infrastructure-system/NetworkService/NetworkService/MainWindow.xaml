@@ -11,8 +11,7 @@
         ResizeMode="NoResize"
         AllowsTransparency="True"
     Background="Transparent"
-    WindowStyle="None"
-        MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    WindowStyle="None">
     <Window.DataContext>
         <viewModel:MainWindowViewModel/>
     </Window.DataContext>
@@ -68,7 +67,7 @@
                         </Grid.ColumnDefinitions>
 
                         <!-- TODO undo-->
-                        <Button Grid.Column="4" Background="Transparent" BorderBrush="Transparent" Command="{Binding ChangeViewCommand}"
+                        <Button Grid.Column="4" Cursor="Hand"  Background="Transparent" BorderBrush="Transparent" Command="{Binding ChangeViewCommand}"
                     CommandParameter="Exit" HorizontalAlignment="Right" x:Name="btnExit" >
                             <StackPanel>
                                 <Image Source="Images/exit.png" Stretch="Uniform" Width="36" Margin="5"/>
@@ -78,7 +77,7 @@
                         </Button>
 
                         <!-- Tabelarni prikaz -->
-                        <Button Background="Transparent" BorderBrush="Transparent" Command="{Binding ChangeViewCommand}" CommandParameter="Entities" x:Name="tableBtn" Grid.ColumnSpan="3" HorizontalAlignment="Right" Margin="0,0,70,-0.2" Width="71" >
+                        <Button Background="Transparent" BorderBrush="Transparent" Command="{Binding ChangeViewCommand}" CommandParameter="Entities" x:Name="tableBtn" Grid.ColumnSpan="3" HorizontalAlignment="Right" Margin="0,0,70,-0.2" Width="71" Cursor="Hand"  >
                             <StackPanel>
                                 <Image Source="Images/table.png" Stretch="Uniform" Width="26" Margin="7"/>
                                 <TextBlock Text="TABLE" Foreground="White" FontFamily="Montserrat"/>
@@ -86,7 +85,7 @@
                         </Button>
 
                         <!-- Mrežni prikaz -->
-                        <Button  x:Name="displayBtn" Grid.Column="2" Background="Transparent" BorderBrush="Transparent" Command="{Binding ChangeViewCommand}" CommandParameter="Display" >
+                        <Button  x:Name="displayBtn" Cursor="Hand"  Grid.Column="2" Background="Transparent" BorderBrush="Transparent" Command="{Binding ChangeViewCommand}" CommandParameter="Display" >
                             <StackPanel>
                                 <Image Source="Images/display.png" Stretch="Uniform" Width="26" Margin="5"/>
                                 <TextBlock Text="DISPLAY" Foreground="White" FontFamily="Montserrat"/>
@@ -94,7 +93,7 @@
                         </Button>
 
                         <!-- Grafovi -->
-                        <Button  Grid.Column="3" Background="Transparent" BorderBrush="Transparent"  Command="{Binding ChangeViewCommand}"
+                        <Button  Grid.Column="3" Cursor="Hand"  Background="Transparent" BorderBrush="Transparent"  Command="{Binding ChangeViewCommand}"
                     CommandParameter="Graph">
                             <StackPanel>
                                 <Image Source="Images/graph.png" Stretch="Uniform" Width="26" Margin="8"/>
@@ -129,14 +128,14 @@
 
                         <!-- TODO undo-->
 
-                        <Button Grid.Column="0" Background="Transparent" BorderBrush="Transparent"  >
+                        <Button Grid.Column="0" Background="Transparent" BorderBrush="Transparent"  Command="{Binding UndoCommand}" Cursor="Hand"  >
                             <StackPanel>
                                 <Image Source="Images/back.png" Stretch="Uniform" Width="26" Margin="5"/>
                                 <TextBlock Text="BACK" Foreground="White" FontFamily="Montserrat"/>
                             </StackPanel>
                         </Button>
                         <!-- Početna stranica -->
-                        <Button Grid.Column="1" Background="Transparent" BorderBrush="Transparent" Command="{Binding ChangeViewCommand}" CommandParameter="Home" x:Name="homeBtn" >
+                        <Button Grid.Column="1" Background="Transparent" BorderBrush="Transparent" Command="{Binding ChangeViewCommand}" CommandParameter="Home" x:Name="homeBtn" Cursor="Hand" >
                             <StackPanel>
                                 <Image Source="Images/home.png" Stretch="Uniform" Width="26" Margin="5"/>
                                 <TextBlock Text="HOME" Foreground="White" FontFamily="Montserrat"/>

@@ -1,5 +1,6 @@
 ﻿using NetworkService;
-
+using NetworkService.Models;
+using NetworkService.ViewModels;
 using System.Windows;
 using System;
 using System.Collections.Generic;
@@ -18,8 +19,6 @@ using static System.Net.Mime.MediaTypeNames;
 using System.Text.RegularExpressions;
 using System.Reflection;
 using System.Windows.Shapes;
-using NetworkService.Models;
-using NetworkService.ViewModels;
 
 namespace NetworkService.Views
 {
@@ -229,9 +228,10 @@ namespace NetworkService.Views
 
         #endregion
 
+        #region Filter Actions
         private bool CanFilter()
         {
-
+            // Enable filtering if there is only a selected filter type and no other criteria
             if (!string.IsNullOrEmpty(FilterType) &&
                 !IsEqualChecked &&
                 !IsGreaterThanChecked &&
@@ -242,6 +242,8 @@ namespace NetworkService.Views
             }
 
             bool isFilterTextValid = int.TryParse(FilterText, out _);
+
+            // Enable filtering if FilterText is a valid number and at least one of the ID criteria is checked
             if (isFilterTextValid &&
                 (IsEqualChecked || IsGreaterThanChecked || IsLowerThanChecked))
             {
@@ -259,6 +261,7 @@ namespace NetworkService.Views
             FilterText = string.Empty;
             FilterType = null;
 
+            //repopulating the table
             FilteredEntities.Clear();
             foreach (Entity f in Entities)
                 FilteredEntities.Add(f);
@@ -270,6 +273,7 @@ namespace NetworkService.Views
 
             var filteredByType = new List<Entity>();
 
+            // First pass: Filter by type
             if (!string.IsNullOrEmpty(FilterType))
             {
                 foreach (Entity entity in Entities)
@@ -285,6 +289,7 @@ namespace NetworkService.Views
                 filteredByType.AddRange(Entities);
             }
 
+            // Second pass: Filter by ID criteria
             foreach (Entity entity in filteredByType)
             {
                 bool matches = true;
@@ -316,8 +321,11 @@ namespace NetworkService.Views
                     FilteredEntities.Add(entity);
                 }
             }
-
         }
+
+        #endregion
+
+        #region Text Changed Action
         private void OnTextChanged(TextBox textBox)
         {
             if (textBox.Name.Equals("IDTextBox") || textBox.Name.Equals("FilterTextBox"))
@@ -362,30 +370,52 @@ namespace NetworkService.Views
             }
         }
 
+        #endregion
+
+        #region Creating/Removing
         private bool CanRemoveEntity()
         {
-            return SelectedEntity != null;
+            if (SelectedEntity != null)
+            {
+                return true;
+            }
+            return false;
         }
-
         private void OnRemoveEntity()
         {
-            if (SelectedEntity == null) return;
-
             if (MessageBox.Show(
                 "Are you sure you want to remove the selected entity?",
                 "Confirmation Dialog",
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
+                SaveState();
                 Entities.Remove(SelectedEntity);
-                FilteredEntities.Remove(SelectedEntity);
+
+                if (DisplayViewModel.AddedToGrid != null)
+                {
+                    var keyToRemove = DisplayViewModel.AddedToGrid.FirstOrDefault(
+                    x => EqualityComparer<Entity>.Default.Equals(x.Value, SelectedEntity)).Key;
+
+                    if (!EqualityComparer<int>.Default.Equals(keyToRemove, default))
+                    {
+                        DisplayViewModel.AddedToGrid.Remove(keyToRemove);
+                        List<int> connections = DisplayViewModel.FindAllConnections(keyToRemove);
+                        foreach (int connectedTo in connections)
+                        {
+                            int source = Math.Min(keyToRemove, connectedTo);
+                            int destination = Math.Max(keyToRemove, connectedTo);
+                            DisplayViewModel.DeleteLine(source, destination);
+                        }
+                    }
+                }
                 SelectedEntity = null;
+                ClearFilters();
             }
+
+
         }
-
-
-
-            private bool CanAddEntity()
+        private bool CanAddEntity()
         {
             bool allGood = true;
 
@@ -427,7 +457,7 @@ namespace NetworkService.Views
         }
         private void OnAddEntity()
         {
-
+            SaveState();
 
             Entity newFlowMeter = new Entity
             {
@@ -450,6 +480,20 @@ namespace NetworkService.Views
             AddEntityCommand.RaiseCanExecuteChanged();
 
         }
+
+        #endregion
+
+        #region Undo
+        private void SaveState()
+        {
+            MainWindowViewModel.UndoStack.Push(new SaveState<CommandType, object>
+                (CommandType.EntityManipulation,
+                new ObservableCollection<Entity>(Entities)));
+        }
+
+        #endregion
+
+        #region Keyboard Actions
 
         private void HideKeyboard()
         {
@@ -499,21 +543,27 @@ namespace NetworkService.Views
             }
             else if (SelectedTextBox.Name.Equals("IDTextBox"))
             {
+                // Create a color animation
                 var colorAnimation = new ColorAnimation
                 {
                     From = Colors.Red,
                     To = (Color)System.Windows.Application.Current.Resources["PrimaryColorDark"],
                     Duration = TimeSpan.FromSeconds(0.3),
                     AutoReverse = false,
-                    RepeatBehavior = new RepeatBehavior(1) 
+                    RepeatBehavior = new RepeatBehavior(1) // Repeat 3 times
                 };
 
+                // Create a storyboard and add the animation to it
                 var storyboard = new Storyboard();
                 storyboard.Children.Add(colorAnimation);
 
+                // Set the target property to the background color
                 Storyboard.SetTargetProperty(colorAnimation, new PropertyPath("(TextBox.Background).(SolidColorBrush.Color)"));
+
+                // Set the target object to the selected TextBox
                 Storyboard.SetTarget(colorAnimation, SelectedTextBox);
 
+                // Begin the animation
                 storyboard.Begin();
             }
 
@@ -525,7 +575,7 @@ namespace NetworkService.Views
                 SelectedTextBox.Text += keyPressed;
             }
         }
-
+        #endregion
 
     }
 

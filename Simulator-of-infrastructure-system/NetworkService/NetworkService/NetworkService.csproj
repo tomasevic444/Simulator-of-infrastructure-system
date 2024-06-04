@@ -64,9 +64,11 @@
     </ApplicationDefinition>
     <Compile Include="Helpers\BindableBase.cs" />
     <Compile Include="Helpers\Commands.cs" />
+    <Compile Include="Helpers\Logging.cs" />
     <Compile Include="Helpers\XmlHelper.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Pair.cs" />
+    <Compile Include="Models\SaveState.cs" />
     <Compile Include="Models\TextBoxBehavior.cs" />
     <Compile Include="ViewModels\DisplayViewModel.cs" />
     <Compile Include="ViewModels\EntitiesViewModel.cs" />
