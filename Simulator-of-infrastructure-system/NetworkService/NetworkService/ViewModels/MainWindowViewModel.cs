@@ -124,7 +124,7 @@ namespace NetworkService.ViewModels
         }
         private void CreateListener()
         {
-            var tcp = new TcpListener(IPAddress.Loopback, 21111);
+            var tcp = new TcpListener(IPAddress.Loopback, 31313);
             tcp.Start();
 
             var listeningThread = new Thread(() =>
@@ -175,15 +175,17 @@ namespace NetworkService.ViewModels
         }
         private void AddValueToList(Entity entity)
         {
+            if (entity.Last_5_Values == null)
+            {
+                entity.Last_5_Values = new List<Pair<DateTime, int>>();
+            }
+
             if (entity.Last_5_Values.Count == 5)
             {
                 entity.Last_5_Values.RemoveAt(0);
-                entity.Last_5_Values.Add(new Pair<DateTime, int>(DateTime.Now, entity.Value));
             }
-            else
-            {
-                entity.Last_5_Values.Add(new Pair<DateTime, int>(DateTime.Now, entity.Value));
-            }
+
+            entity.Last_5_Values.Add(new Pair<DateTime, int>(DateTime.Now, entity.Value));
         }
         public bool CanUndo()
         {

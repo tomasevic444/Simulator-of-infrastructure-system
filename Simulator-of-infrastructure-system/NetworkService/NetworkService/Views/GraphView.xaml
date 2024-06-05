@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NetworkService.Views"
+             xmlns:viewModel="clr-namespace:NetworkService.ViewModels"
              mc:Ignorable="d" 
                   d:DesignHeight="500" d:DesignWidth="350">
     <Border CornerRadius="30" Height="500" Width="320">
@@ -73,13 +74,44 @@
                                 </StackPanel>
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
-
                     </ComboBox>
-
-
                 </StackPanel>
 
-               
+                <Canvas Margin="50,100,50,50" Grid.Row="1" Background="White">
+                    <!-- Bar 1 -->
+                    <Rectangle Width="50" Canvas.Left="50"
+                       Canvas.Top="{Binding BarHeight_1, Converter={StaticResource BarHeightToCanvasTopConverter}}"
+                       Height="{Binding BarHeight_1}"
+                       Fill="{Binding BarColor_1}"/>
+                    <TextBlock Canvas.Left="50" Canvas.Top="370" Width="50"
+                       Text="{Binding Time_1}" HorizontalAlignment="Center"/>
+
+                    <!-- Bar 2 -->
+                    <Rectangle Width="50" Canvas.Left="150"
+                       Canvas.Top="{Binding BarHeight_2, Converter={StaticResource BarHeightToCanvasTopConverter}}"
+                       Height="{Binding BarHeight_2}"
+                       Fill="{Binding BarColor_2}"/>
+                    <TextBlock Canvas.Left="150" Canvas.Top="370" Width="50"
+                       Text="{Binding Time_2}" HorizontalAlignment="Center"/>
+
+                    <!-- Bar 3 -->
+                    <Rectangle Width="50" Canvas.Left="250"
+                       Canvas.Top="{Binding BarHeight_3, Converter={StaticResource BarHeightToCanvasTopConverter}}"
+                       Height="{Binding BarHeight_3}"
+                       Fill="{Binding BarColor_3}"/>
+                    <TextBlock Canvas.Left="250" Canvas.Top="370" Width="50"
+                       Text="{Binding Time_3}" HorizontalAlignment="Center"/>
+
+                    <!-- Bar 4 -->
+                    <Rectangle Width="50" Canvas.Left="350"
+                       Canvas.Top="{Binding BarHeight_4, Converter={StaticResource BarHeightToCanvasTopConverter}}"
+                       Height="{Binding BarHeight_4}"
+                       Fill="{Binding BarColor_4}"/>
+                    <TextBlock Canvas.Left="350" Canvas.Top="370" Width="50"
+                       Text="{Binding Time_4}" HorizontalAlignment="Center"/>
+                </Canvas>
+
+
             </Grid>
         </Border>
     </Border>

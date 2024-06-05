@@ -16,7 +16,7 @@ namespace NetworkService.Models
         string name;
         EntityType entityType;
         int _value;
-        List<Pair<DateTime, int>> _last_5_values;
+        List<Pair<DateTime, int>> _last_5_values = new List<Pair<DateTime, int>>(); // Initialization here
 
         public int ID
         {
@@ -76,8 +76,8 @@ namespace NetworkService.Models
                     _value = value;
                     OnPropertyChanged(nameof(Value));
 
-                    if (_value < 675) ValueState = ValueState.Low;
-                    else if (_value > 735) ValueState = ValueState.High;
+                    if (_value <= 5) ValueState = ValueState.Low;
+                    else if (_value >= 16) ValueState = ValueState.High;
                     else ValueState = ValueState.Normal;
 
                 }
@@ -118,6 +118,5 @@ namespace NetworkService.Models
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
     }
 }
