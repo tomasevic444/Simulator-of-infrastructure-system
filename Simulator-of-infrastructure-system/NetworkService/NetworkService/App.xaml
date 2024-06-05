@@ -84,6 +84,5 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <model:BarHeightToCanvasTopConverter x:Key="BarHeightToCanvasTopConverter"/>
     </Application.Resources>
 </Application>

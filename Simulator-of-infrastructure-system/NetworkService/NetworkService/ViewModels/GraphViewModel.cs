@@ -29,7 +29,7 @@ namespace NetworkService.ViewModels
             }
         }
 
-        private readonly double graphCoefficient = 50.0; // Adjust this as needed
+        private readonly double graphCoefficient =8; // Adjust this as needed
 
         public Commands SelectCommand { get; }
         public Commands SelectionChangedCommand { get; }
@@ -97,31 +97,55 @@ namespace NetworkService.ViewModels
                 {
                     if (SelectedEntity.Last_5_Values?.Count > 0)
                     {
-                        BarHeight_1 = SelectedEntity.Value * graphCoefficient;
+                        BarHeight_1 = SelectedEntity.Last_5_Values[0].Item2 * graphCoefficient;
                         BarColor_1 = GetColorBasedOnValue(SelectedEntity.Last_5_Values[0].Item2);
                         DateTime dateTime = SelectedEntity.Last_5_Values[0].Item1;
                         Time_1 = dateTime.Minute.ToString() + ":" + dateTime.Second.ToString();
                     }
+                    else
+                    {
+                        BarHeight_1 = 0;
+                        BarColor_1 = new SolidColorBrush(Colors.Transparent);
+                        Time_1 = "";
+                    }
                     if (SelectedEntity.Last_5_Values?.Count > 1)
                     {
-                        BarHeight_2 = SelectedEntity.Value * graphCoefficient;
+                        BarHeight_2 = SelectedEntity.Last_5_Values[1].Item2 * graphCoefficient;
                         BarColor_2 = GetColorBasedOnValue(SelectedEntity.Last_5_Values[1].Item2);
                         DateTime dateTime = SelectedEntity.Last_5_Values[1].Item1;
                         Time_2 = dateTime.Minute.ToString() + ":" + dateTime.Second.ToString();
                     }
+                    else
+                    {
+                        BarHeight_2 = 0;
+                        BarColor_2 = new SolidColorBrush(Colors.Transparent);
+                        Time_2 = "";
+                    }
                     if (SelectedEntity.Last_5_Values?.Count > 2)
                     {
-                        BarHeight_3 = SelectedEntity.Value * graphCoefficient;
+                        BarHeight_3 = SelectedEntity.Last_5_Values[2].Item2 * graphCoefficient;
                         BarColor_3 = GetColorBasedOnValue(SelectedEntity.Last_5_Values[2].Item2);
                         DateTime dateTime = SelectedEntity.Last_5_Values[2].Item1;
                         Time_3 = dateTime.Minute.ToString() + ":" + dateTime.Second.ToString();
                     }
+                    else
+                    {
+                        BarHeight_3 = 0;
+                        BarColor_3 = new SolidColorBrush(Colors.Transparent);
+                        Time_3 = "";
+                    }
                     if (SelectedEntity.Last_5_Values?.Count > 3)
                     {
-                        BarHeight_4 = SelectedEntity.Value * graphCoefficient;
+                        BarHeight_4 = SelectedEntity.Last_5_Values[3].Item2 * graphCoefficient;
                         BarColor_4 = GetColorBasedOnValue(SelectedEntity.Last_5_Values[3].Item2);
                         DateTime dateTime = SelectedEntity.Last_5_Values[3].Item1;
                         Time_4 = dateTime.Minute.ToString() + ":" + dateTime.Second.ToString();
+                    }
+                    else
+                    {
+                        BarHeight_4 = 0;
+                        BarColor_4 = new SolidColorBrush(Colors.Transparent);
+                        Time_4 = "";
                     }
                 });
             }
@@ -137,9 +161,9 @@ namespace NetworkService.ViewModels
 
         private SolidColorBrush GetColorBasedOnValue(double value)
         {
-            if (value <= 5.0)
-                return new SolidColorBrush(Colors.Purple);
-            else if (value >= 15.0)
+            if (value < 5.0)
+                return new SolidColorBrush(Colors.Red);
+            else if (value > 15.0)
                 return new SolidColorBrush(Colors.Red);
             else
                 return new SolidColorBrush(Colors.Green);

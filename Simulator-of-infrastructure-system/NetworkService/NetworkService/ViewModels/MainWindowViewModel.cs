@@ -124,7 +124,7 @@ namespace NetworkService.ViewModels
         }
         private void CreateListener()
         {
-            var tcp = new TcpListener(IPAddress.Loopback, 31313);
+            var tcp = new TcpListener(IPAddress.Loopback, 42224);
             tcp.Start();
 
             var listeningThread = new Thread(() =>
@@ -180,7 +180,7 @@ namespace NetworkService.ViewModels
                 entity.Last_5_Values = new List<Pair<DateTime, int>>();
             }
 
-            if (entity.Last_5_Values.Count == 5)
+            if (entity.Last_5_Values.Count == 4)
             {
                 entity.Last_5_Values.RemoveAt(0);
             }
