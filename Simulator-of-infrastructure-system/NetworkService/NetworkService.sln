@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.33328.57
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkService", "NetworkService\NetworkService.csproj", "{55FB20E9-0934-45CE-BE43-CA2562ED6E40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeteringSimulator", "..\..\..\HCI-P2-main\MeteringSimulator\MeteringSimulator\MeteringSimulator.csproj", "{134D87AD-F428-469F-A98E-5F007EDD241B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeteringSimulator", "..\MeteringSimulator\MeteringSimulator\MeteringSimulator.csproj", "{134D87AD-F428-469F-A98E-5F007EDD241B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
