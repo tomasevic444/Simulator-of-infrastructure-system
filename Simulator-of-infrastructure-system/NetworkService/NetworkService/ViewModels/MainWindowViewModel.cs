@@ -124,7 +124,7 @@ namespace NetworkService.ViewModels
         }
         private void CreateListener()
         {
-            var tcp = new TcpListener(IPAddress.Loopback, 42224);
+            var tcp = new TcpListener(IPAddress.Loopback, 42223);
             tcp.Start();
 
             var listeningThread = new Thread(() =>

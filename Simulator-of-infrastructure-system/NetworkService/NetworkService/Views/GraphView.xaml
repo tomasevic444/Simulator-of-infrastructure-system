@@ -76,39 +76,62 @@
                         </ComboBox.ItemTemplate>
                     </ComboBox>
                 </StackPanel>
+                
+                
+                <Canvas Margin="30,20,30,50" Grid.Row="1" Background="#200F53">
 
-                <Canvas Margin="30,50,30,50" Grid.Row="1" Background="White">
+                    <!-- Y-Axis Labels and Lines -->
+                    <Line X1="20" Y1="10" X2="20" Y2="220" Stroke="White" />
+                    <Line X1="20" Y1="220" X2="240" Y2="220" Stroke="White" />
+
+                    <TextBlock Canvas.Left="0" Canvas.Bottom="210" Text="25" Foreground="White" />
+                    <!-- Horizontal lines and Y-axis labels -->
+                    <Line X1="20" Y1="180" X2="240" Y2="180" Stroke="LightGray" StrokeDashArray="4,4" />
+                    <TextBlock Canvas.Left="0" Canvas.Bottom="170" Text="20"  Foreground="White"/>
+
+                    <Line X1="20" Y1="140" X2="240" Y2="140" Stroke="LightGray" StrokeDashArray="4,4" />
+                    <TextBlock Canvas.Left="0" Canvas.Bottom="130" Text="15" Foreground="White" />
+
+                    <Line X1="20" Y1="100" X2="240" Y2="100" Stroke="LightGray" StrokeDashArray="4,4" />
+                    <TextBlock Canvas.Left="0" Canvas.Bottom="90" Text="10" Foreground="White" />
+
+                    <Line X1="20" Y1="60" X2="240" Y2="60" Stroke="LightGray" StrokeDashArray="4,4" />
+                    <TextBlock Canvas.Left="0" Canvas.Bottom="50" Text="5" Foreground="White" />
+
+                    <Line X1="20" Y1="20" X2="240" Y2="20" Stroke="LightGray" StrokeDashArray="4,4" />
+                    <TextBlock Canvas.Left="0" Canvas.Bottom="10" Text="0" Foreground="White" />
+
                     <!-- Bar 1 -->
-                    <Rectangle Width="20"  Canvas.Left="24"
-                        Canvas.Bottom="14"
-                       Height="{Binding BarHeight_1}"
-                       Fill="{Binding BarColor_1}"/>
-                    <TextBlock Canvas.Left="20" Canvas.Bottom="0" Width="30"
-                       Text="{Binding Time_1}" />
+                    <Rectangle Width="20" Canvas.Left="40"
+        Canvas.Bottom="15"
+        Height="{Binding BarHeight_1}"
+        Fill="{Binding BarColor_1}" />
+                    <TextBlock Canvas.Left="36" Canvas.Bottom="0" Width="30"
+        Text="{Binding Time_1}" />
 
                     <!-- Bar 2 -->
-                    <Rectangle Width="20" Canvas.Left="84"
-                       Canvas.Bottom="14"
-                       Height="{Binding BarHeight_2}"
-                       Fill="{Binding BarColor_2}"/>
-                    <TextBlock Width="30" Canvas.Left="80" Canvas.Bottom="0"
-                       Text="{Binding Time_2}" />
+                    <Rectangle Width="20" Canvas.Left="100"
+        Canvas.Bottom="15"
+        Height="{Binding BarHeight_2}"
+        Fill="{Binding BarColor_2}" />
+                    <TextBlock Width="30" Canvas.Left="96" Canvas.Bottom="0"
+        Text="{Binding Time_2}" />
 
                     <!-- Bar 3 -->
-                    <Rectangle Width="20" Canvas.Left="144"
-                       Canvas.Bottom="14"
-                       Height="{Binding BarHeight_3}"
-                       Fill="{Binding BarColor_3}"/>
-                    <TextBlock Width="30" Canvas.Left="140" Canvas.Bottom="0"
-                       Text="{Binding Time_3}" />
+                    <Rectangle Width="20" Canvas.Left="160"
+        Canvas.Bottom="15"
+        Height="{Binding BarHeight_3}"
+        Fill="{Binding BarColor_3}" />
+                    <TextBlock Width="30" Canvas.Left="156" Canvas.Bottom="0"
+        Text="{Binding Time_3}" />
 
                     <!-- Bar 4 -->
-                    <Rectangle Width="20" Canvas.Left="204" 
-                       Canvas.Bottom="14"
-                       Height="{Binding BarHeight_4}"
-                       Fill="{Binding BarColor_4}"/>
-                    <TextBlock Width="30" Canvas.Left="200" Canvas.Bottom="0"
-                       Text="{Binding Time_4}" />
+                    <Rectangle Width="20" Canvas.Left="220"
+        Canvas.Bottom="15"
+        Height="{Binding BarHeight_4}"
+        Fill="{Binding BarColor_4}" />
+                    <TextBlock Width="30" Canvas.Left="216" Canvas.Bottom="0"
+        Text="{Binding Time_4}" />
                 </Canvas>
 
 
