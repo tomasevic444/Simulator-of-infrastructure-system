@@ -35,7 +35,7 @@ namespace NetworkService.Helpers
 
         public static void SaveData(ObservableCollection<Entity> data, string filePath)
         {
-            // Create an XmlSerializer for the FlowMeter type
+            // Create an XmlSerializer for the Entity type
             XmlSerializer serializer = new XmlSerializer(typeof(ObservableCollection<Entity>));
 
             // Write the data to an XML file

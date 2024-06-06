@@ -128,11 +128,12 @@
 
                         <!-- TODO undo-->
 
-                        <Button Grid.Column="0" Background="Transparent" BorderBrush="Transparent"  Command="{Binding UndoCommand}" Cursor="Hand"  >
+                        <Button Grid.Column="0" Background="Transparent" BorderBrush="Transparent"  Command="{Binding UndoCommand}" Cursor="Hand" Margin="10 2 0 0"  >
                             <StackPanel>
                                 <Image Source="Images/back.png" Stretch="Uniform" Width="26" Margin="5"/>
                                 <TextBlock Text="BACK" Foreground="White" FontFamily="Montserrat"/>
                             </StackPanel>
+
                         </Button>
                         <!-- Početna stranica -->
                         <Button Grid.Column="1" Background="Transparent" BorderBrush="Transparent" Command="{Binding ChangeViewCommand}" CommandParameter="Home" x:Name="homeBtn" Cursor="Hand" >

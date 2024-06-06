@@ -7,7 +7,7 @@
     <Application.Resources>
 
         <Color x:Key="PrimaryColor">#462AD8</Color>
-        <Color x:Key="PrimaryColorDark">#0F4C75</Color>
+        <Color x:Key="PrimaryColorDark">White</Color>
         <Color x:Key="SecondaryColor">#0F4C75</Color>
         <Color x:Key="HoverColor">#166EA9</Color>
         <Color x:Key="SecondaryColorLight">#535c6b</Color>
@@ -17,6 +17,7 @@
             <Setter Property="Background" Value="#462AD8" />
             <Setter Property="Foreground" Value="White" />
             <Setter Property="BorderBrush" Value="White" />
+            <Setter Property="FontFamily" Value="Montserrat" />
             <Setter Property="Padding" Value="10,5" />
             <Setter Property="FontSize" Value="20" />
             <Setter Property="FontWeight" Value="Bold" />

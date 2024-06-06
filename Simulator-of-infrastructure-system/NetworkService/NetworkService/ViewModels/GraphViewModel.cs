@@ -95,11 +95,11 @@ namespace NetworkService.ViewModels
             {
                 Application.Current.Dispatcher.Invoke(() =>
                 {
-                    if (SelectedEntity.Last_5_Values?.Count > 0)
+                    if (SelectedEntity.Last_4_Values?.Count > 0)
                     {
-                        BarHeight_1 = SelectedEntity.Last_5_Values[0].Item2 * graphCoefficient;
-                        BarColor_1 = GetColorBasedOnValue(SelectedEntity.Last_5_Values[0].Item2);
-                        DateTime dateTime = SelectedEntity.Last_5_Values[0].Item1;
+                        BarHeight_1 = SelectedEntity.Last_4_Values[0].Item2 * graphCoefficient;
+                        BarColor_1 = GetColorBasedOnValue(SelectedEntity.Last_4_Values[0].Item2);
+                        DateTime dateTime = SelectedEntity.Last_4_Values[0].Item1;
                         Time_1 = dateTime.Minute.ToString() + ":" + dateTime.Second.ToString();
                     }
                     else
@@ -108,11 +108,11 @@ namespace NetworkService.ViewModels
                         BarColor_1 = new SolidColorBrush(Colors.Transparent);
                         Time_1 = "";
                     }
-                    if (SelectedEntity.Last_5_Values?.Count > 1)
+                    if (SelectedEntity.Last_4_Values?.Count > 1)
                     {
-                        BarHeight_2 = SelectedEntity.Last_5_Values[1].Item2 * graphCoefficient;
-                        BarColor_2 = GetColorBasedOnValue(SelectedEntity.Last_5_Values[1].Item2);
-                        DateTime dateTime = SelectedEntity.Last_5_Values[1].Item1;
+                        BarHeight_2 = SelectedEntity.Last_4_Values[1].Item2 * graphCoefficient;
+                        BarColor_2 = GetColorBasedOnValue(SelectedEntity.Last_4_Values[1].Item2);
+                        DateTime dateTime = SelectedEntity.Last_4_Values[1].Item1;
                         Time_2 = dateTime.Minute.ToString() + ":" + dateTime.Second.ToString();
                     }
                     else
@@ -121,11 +121,11 @@ namespace NetworkService.ViewModels
                         BarColor_2 = new SolidColorBrush(Colors.Transparent);
                         Time_2 = "";
                     }
-                    if (SelectedEntity.Last_5_Values?.Count > 2)
+                    if (SelectedEntity.Last_4_Values?.Count > 2)
                     {
-                        BarHeight_3 = SelectedEntity.Last_5_Values[2].Item2 * graphCoefficient;
-                        BarColor_3 = GetColorBasedOnValue(SelectedEntity.Last_5_Values[2].Item2);
-                        DateTime dateTime = SelectedEntity.Last_5_Values[2].Item1;
+                        BarHeight_3 = SelectedEntity.Last_4_Values[2].Item2 * graphCoefficient;
+                        BarColor_3 = GetColorBasedOnValue(SelectedEntity.Last_4_Values[2].Item2);
+                        DateTime dateTime = SelectedEntity.Last_4_Values[2].Item1;
                         Time_3 = dateTime.Minute.ToString() + ":" + dateTime.Second.ToString();
                     }
                     else
@@ -134,11 +134,11 @@ namespace NetworkService.ViewModels
                         BarColor_3 = new SolidColorBrush(Colors.Transparent);
                         Time_3 = "";
                     }
-                    if (SelectedEntity.Last_5_Values?.Count > 3)
+                    if (SelectedEntity.Last_4_Values?.Count > 3)
                     {
-                        BarHeight_4 = SelectedEntity.Last_5_Values[3].Item2 * graphCoefficient;
-                        BarColor_4 = GetColorBasedOnValue(SelectedEntity.Last_5_Values[3].Item2);
-                        DateTime dateTime = SelectedEntity.Last_5_Values[3].Item1;
+                        BarHeight_4 = SelectedEntity.Last_4_Values[3].Item2 * graphCoefficient;
+                        BarColor_4 = GetColorBasedOnValue(SelectedEntity.Last_4_Values[3].Item2);
+                        DateTime dateTime = SelectedEntity.Last_4_Values[3].Item1;
                         Time_4 = dateTime.Minute.ToString() + ":" + dateTime.Second.ToString();
                     }
                     else

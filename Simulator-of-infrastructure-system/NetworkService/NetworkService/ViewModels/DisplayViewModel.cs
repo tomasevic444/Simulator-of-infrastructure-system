@@ -87,6 +87,7 @@ namespace NetworkService.ViewModels
         {
             if (CanvasCollection.Count == 0)
             {
+                // Initialize CanvasCollection with 12 Canvas objects
                 for (int i = 0; i < 12; i++)
                 {
                     Canvas canvas = new Canvas();
@@ -103,7 +104,7 @@ namespace NetworkService.ViewModels
                         canvas.Background = Brushes.Transparent;
                         EntityInfo.Add(null);
                     }
-
+                    // Mark the canvas as taken and store the entity data in resources
                     canvas.AllowDrop = true;
                     CanvasCollection.Add(canvas);
                     BorderBrushCollection.Add(Brushes.Transparent);
@@ -121,6 +122,7 @@ namespace NetworkService.ViewModels
                         CanvasCollection[i].Resources["data"] = AddedToGrid[i];
                         EntityInfo[i] = AddedToGrid[i];
                     }
+                    // If CanvasCollection is not empty, update existing canvases
                     else
                     {
                         CanvasCollection[i].Background = Brushes.Transparent;
@@ -131,7 +133,7 @@ namespace NetworkService.ViewModels
                         BorderBrushCollection[i] = Brushes.Transparent;
                         EntityInfo[i] = null;
 
-                        /*if some lines are left over, delete them*/
+                        // Find and delete any leftover connections for the current index
                         List<int> connections = FindAllConnections(i);
                         if (connections.Count > 0)
                         {
@@ -201,13 +203,8 @@ namespace NetworkService.ViewModels
                         Console.WriteLine($"{linesArray[i].X1},{linesArray[i].Y1}");
                         Console.WriteLine($"{linesArray[i].X2},{linesArray[i].Y2}");
                     }
-
                 }
-
-
-
             });
-
         }
 
         #endregion
@@ -238,7 +235,7 @@ namespace NetworkService.ViewModels
         {
             index %= 3;
 
-            return Math.Round(index * 115.69 + 40.167);
+            return Math.Round(index * 115.69 + 50.167);
         }
         public static List<int> FindAllConnections(int index)
         {
@@ -428,9 +425,9 @@ namespace NetworkService.ViewModels
                 DrawExistingLines();
             }
 
-            Entity removedMeter = CanvasCollection[index].Resources["data"] as Entity;
+            Entity removedEntity = CanvasCollection[index].Resources["data"] as Entity;
             AddedToGrid.Remove(index); //remove entity from the list of placed entities
-            AddToCategory(removedMeter);
+            AddToCategory(removedEntity);
 
             CanvasCollection[index].Background = Brushes.Transparent;
             CanvasCollection[index].Resources.Remove("taken");
@@ -466,30 +463,6 @@ namespace NetworkService.ViewModels
                 {
                     category.Entities.Remove(entity);
                     break;
-                }
-            }
-        }
-
-        #endregion
-
-        #region UI Updates
-        //method for updating border color based on the value
-        public static void UpdateEntitiesOnCanvas()
-        {
-            if (CanvasCollection != null)
-            {
-                if (CanvasCollection.Count != 0)
-                {
-                    for (int i = 0; i < 12; i++)
-                    {
-                        if (CanvasCollection[i].Resources.Contains("taken"))
-                        {
-                            if (AddedToGrid.TryGetValue(i, out Entity entity))
-                            {
-                                BorderBrushCollection[i] = entity.ValueState == ValueState.Normal ? Brushes.GreenYellow : Brushes.Crimson;
-                            }
-                        }
-                    }
                 }
             }
         }

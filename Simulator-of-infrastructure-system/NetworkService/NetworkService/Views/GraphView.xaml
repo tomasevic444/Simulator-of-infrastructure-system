@@ -33,6 +33,7 @@
 
                     <TextBlock
                 Text="Select entity to display:"
+                  FontFamily="Montserrat"
                 TextAlignment="Center"
                 Foreground="White"
                 FontSize="25"
@@ -45,7 +46,7 @@
                     <ComboBox
                 x:Name="SelectionComboBox"
                 Width="250"
-                Height="40"
+                Height="35"
                 Grid.Row="0"
                 ItemsSource="{Binding Entities}"
                 SelectedItem="{Binding SelectedEntity}"               

@@ -45,7 +45,6 @@ namespace NetworkService.ViewModels
         #region Commands
         public Commands<string> ChangeViewCommand { get; set; }
         public Commands UndoCommand { get; set; }
-        public Commands QuitCommand { get; set; }
         public Commands CycleTabsCommand { get; set; }
 
         #endregion
@@ -124,7 +123,7 @@ namespace NetworkService.ViewModels
         }
         private void CreateListener()
         {
-            var tcp = new TcpListener(IPAddress.Loopback, 42223);
+            var tcp = new TcpListener(IPAddress.Loopback, 32134);
             tcp.Start();
 
             var listeningThread = new Thread(() =>
@@ -162,7 +161,6 @@ namespace NetworkService.ViewModels
                             {
                                 Entities[id].Value = value;
                                 AddValueToList(Entities[id]);
-                                DisplayViewModel.UpdateEntitiesOnCanvas();
                             }
 
                         }
@@ -175,17 +173,17 @@ namespace NetworkService.ViewModels
         }
         private void AddValueToList(Entity entity)
         {
-            if (entity.Last_5_Values == null)
+            if (entity.Last_4_Values == null)
             {
-                entity.Last_5_Values = new List<Pair<DateTime, int>>();
+                entity.Last_4_Values = new List<Pair<DateTime, int>>();
             }
 
-            if (entity.Last_5_Values.Count == 4)
+            if (entity.Last_4_Values.Count == 4)
             {
-                entity.Last_5_Values.RemoveAt(0);
+                entity.Last_4_Values.RemoveAt(0);
             }
 
-            entity.Last_5_Values.Add(new Pair<DateTime, int>(DateTime.Now, entity.Value));
+            entity.Last_4_Values.Add(new Pair<DateTime, int>(DateTime.Now, entity.Value));
         }
         public bool CanUndo()
         {
@@ -243,7 +241,6 @@ namespace NetworkService.ViewModels
 
                 DisplayViewModel.InitializeCollections();
                 DisplayViewModel.InitializeCategories();
-                //DisplayViewModel.DrawExistingLines();
 
                 SelectedContent = new DisplayView();
 

@@ -24,7 +24,7 @@ namespace NetworkService.Views
 {
     public class EntitiesViewModel : BindableBase
     {
-        #region Properties and Commands
+
 
         #region Properties
 
@@ -176,7 +176,7 @@ namespace NetworkService.Views
 
         #endregion
 
-        #endregion
+
 
         #region Constructor
         public EntitiesViewModel()
@@ -459,15 +459,15 @@ namespace NetworkService.Views
         {
             SaveState();
 
-            Entity newFlowMeter = new Entity
+            Entity newEntity = new Entity
             {
                 ID = int.Parse(IDText),
                 Name = NameText.Trim()
             };
             string type = (SelectedType as string);
-            newFlowMeter.EntityType = new EntityType(type, $"../../Images/{type.ToLower()}.png");
+            newEntity.EntityType = new EntityType(type, $"../../Images/{type.ToLower()}.png");
 
-            Entities.Add(newFlowMeter);
+            Entities.Add(newEntity);
 
             IDText = string.Empty;
             NameText = string.Empty;

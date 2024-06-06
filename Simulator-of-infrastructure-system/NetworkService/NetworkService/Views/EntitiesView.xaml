@@ -127,53 +127,14 @@
 
                         <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" >
                             <Label Grid.ColumnSpan="3" Content="Type:" VerticalAlignment="Center" FontSize="10" FontWeight="Bold" Foreground="White"  />
-                            <ComboBox   Width="80"  Height="20" FontSize="10" FontWeight="Bold" ItemsSource="{Binding Types}"
-                            SelectedItem="{Binding FilterType, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" />
-                            <Button x:Name="btnClear"                          
-                            BorderThickness="0"
-                            Content="Clear"
-                            Foreground="White"
-                            Command="{Binding ClearFiltersCommand}"
-                            FontSize="12"
-                            FontFamily="Montserrat"
-                            Cursor="Hand"     
-                                    Margin="105 0 0 0">
-                                <Button.Style>
-                                    <Style TargetType="Button">
-                                        <Setter Property="Background" Value="#462AD8"/>
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="#28AEED"/>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Button.Style>
-                                <Button.Template>
-                                    <ControlTemplate TargetType="Button">
-                                        <Border Width="70" Height="20"
-                                        CornerRadius="5"
-                                        Background="{TemplateBinding Background}">
-                                            <ContentPresenter VerticalAlignment="Center"
-                                                      HorizontalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Button.Template>
-                            </Button>
+                            <ComboBox   Width="90"  Height="20" FontSize="10" FontWeight="Bold" ItemsSource="{Binding Types}" FontFamily="Montserrat" 
+                            SelectedItem="{Binding FilterType, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="3 0 0 0" />
+                           
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6">
-
-                            <Viewbox Height="20" Margin="3, 0, 3, 0">
-                                <RadioButton Content=">" Foreground="White"  IsChecked="{Binding IsGreaterThanChecked,Mode=TwoWay}" />
-                            </Viewbox>
-                            <Viewbox Height="20" Margin="0, 0, 3, 0">
-                                <RadioButton Content="&lt;" Foreground="White" IsChecked="{Binding IsLowerThanChecked, Mode=TwoWay}" />
-                            </Viewbox>
-                            <Viewbox Height="20" Margin="0, 0, 3, 0">
-                                <RadioButton Content="=" Foreground="White" IsChecked="{Binding IsEqualChecked, Mode=TwoWay}" />
-                            </Viewbox>
-
-                            <TextBox x:Name="FilterTextBox" Height="20" Width="90" FontSize="10" FontWeight="Bold" 
-                             MaxLength="5" Text="{Binding Path=FilterText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                            <Label Grid.ColumnSpan="3" Content="Id:" VerticalAlignment="Center" FontSize="10" FontWeight="Bold" Foreground="White" Margin="13 0 0 0" />
+                            <TextBox x:Name="FilterTextBox" Height="20" Width="90" FontSize="10" FontWeight="Bold" FontFamily="Montserrat" Margin="3 0 0 0"
+                             MaxLength="4" Text="{Binding Path=FilterText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="GotFocus">
                                         <i:InvokeCommandAction Command="{Binding TextBoxGotFocusCommand}" CommandParameter="{Binding ElementName=FilterTextBox}"/>
@@ -182,14 +143,56 @@
                                         <i:InvokeCommandAction Command="{Binding TextChangedCommand}" CommandParameter="{Binding ElementName=FilterTextBox}"/>
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
-                                <TextBox.Resources>
-                                    <Style TargetType="{x:Type Border}">
-                                        <Setter Property="CornerRadius" Value="5"/>
-                                    </Style>
-                                </TextBox.Resources>
+
                             </TextBox>
-                            <Button x:Name="btnFilter"                          
+                            <Viewbox Height="20" Margin="10, 0, 3, 0">
+                                <RadioButton Content=">" Foreground="White"  IsChecked="{Binding IsGreaterThanChecked,Mode=TwoWay}" />
+                            </Viewbox>
+                            <Viewbox Height="20" Margin="0, 0, 3, 0">
+                                <RadioButton Content="&lt;" Foreground="White" IsChecked="{Binding IsLowerThanChecked, Mode=TwoWay}" />
+                            </Viewbox>
+                            <Viewbox Height="20" Margin="0, 0, 3, 0">
+                                <RadioButton Content="=" Foreground="White" IsChecked="{Binding IsEqualChecked, Mode=TwoWay}" />
+                            </Viewbox>
+                        </StackPanel>
+                        <Button x:Name="btnClear"                          
                             BorderThickness="0"
+                            Content="Clear"
+                            Foreground="White"
+                            Command="{Binding ClearFiltersCommand}"
+                            FontSize="12"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                                  Grid.Row="4"
+                               
+                                Grid.ColumnSpan="2"
+                                    Margin="10 0 0 0">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="#462AD8"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#28AEED"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Width="70" Height="20"
+                                        CornerRadius="5"
+                                        Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button x:Name="btnFilter"                          
+                            BorderThickness="0"
+                                Grid.Row="4"
+                                Grid.Column="4"
+                                Grid.ColumnSpan="2"
                             Content="Filter"
                               Command="{Binding FilterCommand}"
                             Foreground="White"
@@ -197,29 +200,27 @@
                             FontFamily="Montserrat"
                             Cursor="Hand" 
                                     Margin="10 0 0 0">
-                                <Button.Style>
-                                    <Style TargetType="Button">
-                                        <Setter Property="Background" Value="#462AD8"/>
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="#28AEED"/>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Button.Style>
-                                <Button.Template>
-                                    <ControlTemplate TargetType="Button">
-                                        <Border Width="70" Height="20"
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="#462AD8"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#28AEED"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Width="70" Height="20"
                                         CornerRadius="5"
                                         Background="{TemplateBinding Background}">
-                                            <ContentPresenter VerticalAlignment="Center"
+                                        <ContentPresenter VerticalAlignment="Center"
                                                       HorizontalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Button.Template>
-                            </Button>
-                        </StackPanel>
-
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
                     </Grid>
                 </Border>
                 <StackPanel Orientation="Horizontal"  Grid.Row="2"
@@ -257,11 +258,11 @@
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
-                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 -3 0 0" Content="ENTITY" FontSize="12" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                            <Label Grid.Row="0" Grid.Column="0"  FontFamily="Montserrat" Grid.ColumnSpan="2" Margin="0 -3 0 0" Content="ENTITY" FontSize="12" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                             <!-- Id-->
                             <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" >
-                                <Label  Margin="19 0 0 0" Grid.ColumnSpan="3" Content="Id:" VerticalAlignment="Center" FontSize="10" FontWeight="Bold" Foreground="White"  />
-                                <TextBox   x:Name="IDTextBox" Width="80"  Height="17" FontSize="10" FontWeight="Bold" Margin="0,2" Text="{Binding IDText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                                <Label  Margin="19 0 0 0" FontFamily="Montserrat" Grid.ColumnSpan="3" Content="Id:" VerticalAlignment="Center" FontSize="10" FontWeight="Bold" Foreground="White"  />
+                                <TextBox   MaxLength="4" x:Name="IDTextBox" Width="80"  Height="17" FontSize="10" FontWeight="Bold" Margin="0,2" Text="{Binding IDText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="GotFocus">
                                             <i:InvokeCommandAction Command="{Binding TextBoxGotFocusCommand}" CommandParameter="{Binding ElementName=IDTextBox}"/>
@@ -274,13 +275,13 @@
                             </StackPanel>
                             <!-- Name-->
                             <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6" >
-                                <Label Grid.ColumnSpan="3" Content="Name:" VerticalAlignment="Center" FontSize="10" FontWeight="Bold" Foreground="White"  />
+                                <Label FontFamily="Montserrat" Grid.ColumnSpan="3" Content="Name:" VerticalAlignment="Center" FontSize="10" FontWeight="Bold" Foreground="White"  />
                                 <TextBox  x:Name="NameTextBox" Width="80"  Height="17" FontSize="10" FontWeight="Bold"  Margin="1 0 0 0" Text="{Binding NameText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  model:TextBoxBehavior.GotFocusCommand=
                         "{Binding TextBoxGotFocusCommand}"></TextBox>
                             </StackPanel>
                             <!-- Type-->
                             <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="6"  >
-                                <Label Margin ="7 0 0 0" Grid.ColumnSpan="3" Content="Type:" VerticalAlignment="Center" FontSize="10" FontWeight="Bold" Foreground="White"  />
+                                <Label Margin ="7 0 0 0" FontFamily="Montserrat" Grid.ColumnSpan="3" Content="Type:" VerticalAlignment="Center" FontSize="10" FontWeight="Bold" Foreground="White"  />
                                 <ComboBox   Width="80"  Height="17" FontSize="10" FontWeight="Bold"  ItemsSource="{Binding Types}" 
                                   SelectedItem="{Binding SelectedType}" Margin="0 0 0 0" />
                                 <Button                         

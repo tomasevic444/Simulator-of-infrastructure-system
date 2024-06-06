@@ -16,7 +16,7 @@ namespace NetworkService.Models
         string name;
         EntityType entityType;
         int _value;
-        List<Pair<DateTime, int>> _last_5_values = new List<Pair<DateTime, int>>(); // Initialization here
+        List<Pair<DateTime, int>> _last_4_values = new List<Pair<DateTime, int>>(); // Initialization here
 
         public int ID
         {
@@ -98,18 +98,18 @@ namespace NetworkService.Models
                 }
             }
         }
-        public List<Pair<DateTime, int>> Last_5_Values
+        public List<Pair<DateTime, int>> Last_4_Values
         {
             get
             {
-                return _last_5_values;
+                return _last_4_values;
             }
             set
             {
-                if (_last_5_values != value)
+                if (_last_4_values != value)
                 {
-                    _last_5_values = value;
-                    OnPropertyChanged(nameof(Last_5_Values));
+                    _last_4_values = value;
+                    OnPropertyChanged(nameof(Last_4_Values));
                 }
             }
         }
