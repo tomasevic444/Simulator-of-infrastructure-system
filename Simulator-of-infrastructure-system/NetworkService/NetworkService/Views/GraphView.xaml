@@ -57,6 +57,7 @@
                                     <TextBlock 
                                 Foreground="Black"
                                 Text="ID :"
+                                 FontFamily="Montserrat"
                                 Margin="0 -3 0 0"
                                 FontSize="20"
                                 Padding="3"/>
@@ -65,11 +66,13 @@
                                 Text="{Binding ID}"
                                 Margin="0 -3 0 0"
                                 FontSize="20"
+                                        FontFamily="Montserrat"
                                 Padding="3"/>
                                     <TextBlock
                                 Foreground="Black"
                                 Text="{Binding Name}"
                                 Margin="10 -3 0 0"
+                                        FontFamily="Montserrat"
                                 FontSize="20"
                                 Padding="3"/>
                                 </StackPanel>
@@ -108,7 +111,7 @@
         Height="{Binding BarHeight_1}"
         Fill="{Binding BarColor_1}" />
                     <TextBlock Canvas.Left="36" Canvas.Bottom="0" Width="30"
-        Text="{Binding Time_1}" />
+        Text="{Binding Time_1}" Foreground="White"/>
 
                     <!-- Bar 2 -->
                     <Rectangle Width="20" Canvas.Left="100"
@@ -116,7 +119,7 @@
         Height="{Binding BarHeight_2}"
         Fill="{Binding BarColor_2}" />
                     <TextBlock Width="30" Canvas.Left="96" Canvas.Bottom="0"
-        Text="{Binding Time_2}" />
+        Text="{Binding Time_2}"  Foreground="White"/>
 
                     <!-- Bar 3 -->
                     <Rectangle Width="20" Canvas.Left="160"
@@ -124,14 +127,14 @@
         Height="{Binding BarHeight_3}"
         Fill="{Binding BarColor_3}" />
                     <TextBlock Width="30" Canvas.Left="156" Canvas.Bottom="0"
-        Text="{Binding Time_3}" />
+        Text="{Binding Time_3}" Foreground="White" />
 
                     <!-- Bar 4 -->
                     <Rectangle Width="20" Canvas.Left="220"
         Canvas.Bottom="15"
         Height="{Binding BarHeight_4}"
         Fill="{Binding BarColor_4}" />
-                    <TextBlock Width="30" Canvas.Left="216" Canvas.Bottom="0"
+                    <TextBlock Width="30" Canvas.Left="216" Canvas.Bottom="0" Foreground="White"
         Text="{Binding Time_4}" />
                 </Canvas>
 

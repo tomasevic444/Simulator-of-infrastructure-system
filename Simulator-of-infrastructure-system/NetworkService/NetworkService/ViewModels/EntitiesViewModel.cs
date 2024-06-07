@@ -320,7 +320,9 @@ namespace NetworkService.Views
                 {
                     FilteredEntities.Add(entity);
                 }
+                
             }
+            ToastNotify.RaiseToast("Filtered", "Successful filtering!", Notification.Wpf.NotificationType.Notification);
         }
 
         #endregion
@@ -487,7 +489,7 @@ namespace NetworkService.Views
             ToastNotify.RaiseToast(
                     "Successful",
                     $"Created entity!:{newEntity.ID}",
-                    Notification.Wpf.NotificationType.Information);
+                    Notification.Wpf.NotificationType.Success);
 
         }
 
