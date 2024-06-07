@@ -46,6 +46,7 @@ namespace NetworkService.ViewModels
         public Commands<string> ChangeViewCommand { get; set; }
         public Commands UndoCommand { get; set; }
         public Commands CycleTabsCommand { get; set; }
+        public ICommand MouseDownCommand { get; }
 
         #endregion
 
@@ -57,16 +58,14 @@ namespace NetworkService.ViewModels
             Entities = XmlHelper.LoadData("entityData.xml");
             UndoStack = new Stack<SaveState<CommandType, object>>();
 
-            #region Commands
 
             ChangeViewCommand = new Commands<string>(ChangeView);
             UndoCommand = new Commands(OnUndo, CanUndo);
             CycleTabsCommand = new Commands(OnCycleTabs)
 ;
-            #endregion
 
             SelectedContent = new HomeView(); //setting the home view as a default
-
+            MouseDownCommand = new Commands<Window>(OnMouseDown);
         }
         #endregion
 
@@ -123,7 +122,7 @@ namespace NetworkService.ViewModels
         }
         private void CreateListener()
         {
-            var tcp = new TcpListener(IPAddress.Loopback, 32134);
+            var tcp = new TcpListener(IPAddress.Loopback, 32157);
             tcp.Start();
 
             var listeningThread = new Thread(() =>
@@ -252,5 +251,12 @@ namespace NetworkService.ViewModels
 
 
         #endregion
+        private void OnMouseDown(Window window)
+        {
+            if (Mouse.LeftButton == MouseButtonState.Pressed)
+            {
+                window?.DragMove();
+            }
+        }
     }
 }

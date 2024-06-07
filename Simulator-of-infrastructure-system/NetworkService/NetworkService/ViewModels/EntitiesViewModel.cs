@@ -409,6 +409,11 @@ namespace NetworkService.Views
                         }
                     }
                 }
+
+                ToastNotify.RaiseToast(
+                    "Deletion Successful",
+                    $"Entity with ID:{SelectedEntity.ID}",
+                    Notification.Wpf.NotificationType.Warning);
                 SelectedEntity = null;
                 ClearFilters();
             }
@@ -478,6 +483,11 @@ namespace NetworkService.Views
             ClearFilters();
 
             AddEntityCommand.RaiseCanExecuteChanged();
+
+            ToastNotify.RaiseToast(
+                    "Successful",
+                    $"Created entity!:{newEntity.ID}",
+                    Notification.Wpf.NotificationType.Information);
 
         }
 

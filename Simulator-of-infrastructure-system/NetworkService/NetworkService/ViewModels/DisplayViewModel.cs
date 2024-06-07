@@ -235,7 +235,7 @@ namespace NetworkService.ViewModels
         {
             index %= 3;
 
-            return Math.Round(index * 115.69 + 50.167);
+            return Math.Round(index * 100.69 + 50.167);
         }
         public static List<int> FindAllConnections(int index)
         {

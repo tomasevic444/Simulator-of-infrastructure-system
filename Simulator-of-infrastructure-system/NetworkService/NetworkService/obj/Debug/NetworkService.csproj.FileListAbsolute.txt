@@ -101,3 +101,8 @@ C:\Users\Tomas\Desktop\HCI3\Simulator-of-infrastructure-system\NetworkService\Ne
 C:\Users\Tomas\Desktop\HCI3\Simulator-of-infrastructure-system\NetworkService\NetworkService\bin\Debug\FontAwesome.WPF.xml
 C:\Users\Tomas\Desktop\HCI3\Simulator-of-infrastructure-system\NetworkService\NetworkService\obj\Debug\Views\GraphView.g.cs
 C:\Users\Tomas\Desktop\HCI3\Simulator-of-infrastructure-system\NetworkService\NetworkService\obj\Debug\Views\GraphView.baml
+C:\Users\Tomas\Desktop\HCI3\Simulator-of-infrastructure-system\NetworkService\NetworkService\bin\Debug\Notification.Wpf.dll
+C:\Users\Tomas\Desktop\HCI3\Simulator-of-infrastructure-system\NetworkService\NetworkService\bin\Debug\System.ValueTuple.dll
+C:\Users\Tomas\Desktop\HCI3\Simulator-of-infrastructure-system\NetworkService\NetworkService\bin\Debug\Notification.Wpf.pdb
+C:\Users\Tomas\Desktop\HCI3\Simulator-of-infrastructure-system\NetworkService\NetworkService\bin\Debug\Notification.Wpf.xml
+C:\Users\Tomas\Desktop\HCI3\Simulator-of-infrastructure-system\NetworkService\NetworkService\bin\Debug\System.ValueTuple.xml
